@@ -6,6 +6,8 @@ const HelloBootstrap = () => (
             <div className="container-fluid">
                 <form className="navbar-form navbar-center">
                 </form>
+                <div className="calendar">
+                </div>
             </div>
         </nav>
     </div>
