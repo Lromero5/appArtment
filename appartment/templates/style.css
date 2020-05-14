@@ -1,0 +1,92 @@
+html{
+    font-size: 62.5%
+}
+
+body{
+    font: 1.6rem Helvetica;
+    height: 100vh;
+    margin: 0;
+}
+
+.grid-container{
+    display: grid;
+    grid-template-areas: 
+    "header"
+    "main"
+    "footer";
+    height: 100%;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 5 rem;
+}
+
+.header{
+    height: 70px;
+    grid-area: header;
+    background-color: #fdd716;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:10px;
+}
+
+.brand a{
+    color: #ffffff;
+    font-size: 2.5 rem;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.header-links a{
+    color:#ffffff;
+    text-decoration: none;
+}
+
+.header-links a:hover{
+    color:#ec6447;
+}
+
+.main{
+    grid-area: main;
+}
+
+.footer{
+    grid-area: footer;
+    background-color: #ec6447;
+    color:#ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    padding: 10px;
+}
+
+
+a{
+    text-decoration: none;
+}
+
+a:hover{
+    color: #ff8000
+}
+
+.households {
+    display: flex;
+    
+}
+
+.household li {
+    list-style-type: none;
+    padding: 0;
+    flex: 0 1 34rem;
+    margin: 1 rem;
+    height: 50 rem;
+    border-bottom: .1rem;
+}
+
+.household{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
