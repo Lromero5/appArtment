@@ -8,6 +8,9 @@ body{
   margin: 0;
 }
 
+#root{
+  height: 100%
+}
 .grid-container{
   display: grid;
   grid-template-areas: 
@@ -95,6 +98,6 @@ a:hover{
   height: 100%;
 }
 
-.profile-info{
+.profile-info main{
   position: relative;
 }
