@@ -2,6 +2,14 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+
+// import HelloBootstrap from "./components/HelloBootstrap";
+
+// const App = () => <HelloBootstrap />;
+
+// export default App;
+
+
 function App() {
   return (
     <div className="App">
