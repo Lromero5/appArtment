@@ -1,33 +1,33 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-
-
-// import HelloBootstrap from "./components/HelloBootstrap";
-
-// const App = () => <HelloBootstrap />;
-
-// export default App;
-
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import householdData from './utils/householdData';
+import Household from './pages/Household';
+import HomeScreen from './pages/HomeScreen';
+import LogOut from './pages/LogOut';
+import Navbar from './components/Navbar';
+// import Account from './pages/Account';
+// import SignIn from './pages/SignIn';
+// import SignUp from './pages/SignUp';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <Router>
+      <div>
+      <Navbar/>
+    <div className="grid-container">
+        
+           
+              <Route path="/" exact={true} component={HomeScreen}></Route> 
+              <Route path="/household/:id" component={Household}></Route>
+              <Route path='/logout/' component={LogOut}></Route>
+      
+
+
+      
     </div>
+    </div>
+  </Router> 
   );
 }
 
