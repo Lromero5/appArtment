@@ -101,3 +101,53 @@ a:hover{
 .profile-info main{
   position: relative;
 }
+
+.details{
+  /* display: flex; */
+  justify-content: space-between;
+  align-items: flex-start;
+  width: fit-content;
+  padding-left: 40px;
+  /* border: black;
+  border-radius: 0.5 rem; */
+}
+
+.details-info{
+  flex: 1 1 30 rem;  
+}
+
+
+.details-action{
+  flex: 1 1 30 rem;
+  padding-right: 100px;
+  
+}
+
+.details-info ul, .details-action ul{
+  list-style-type: none;
+  padding: 0
+}
+
+.details-info li, .details-action li{
+  margin-bottom: 1 rem;
+}
+
+
+.pending{
+  padding-left: 20px;
+  border: .1rem #808080 solid;
+  border-radius: 0.5 rem;
+  padding: 1 rem;
+  justify-content: center;
+}
+
+.head-title{
+  text-align: center;
+}
+
+
+.button{
+  padding: 1 rem;
+  border: .1 rem #808080 solid;
+  cursor: pointer;
+}

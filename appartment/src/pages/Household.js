@@ -14,6 +14,9 @@ function Household(props){
                 </li>)
             }
         </ul>
+    
+
+    
     )
 }
 
