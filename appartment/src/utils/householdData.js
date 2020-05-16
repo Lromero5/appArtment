@@ -1,7 +1,7 @@
 export default {
-    households: [
+    household: [
     {
-        id:'',
+        id:'1',
         name: '5th Street',
         members: ''
     }

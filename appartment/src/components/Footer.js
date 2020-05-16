@@ -1,9 +1,10 @@
 import React from 'react'
+import slogan from '../images/bless.png'
 
 function Footer(){
     return( 
         <footer className="footer">
-        <img src="./images/bless.png" alt="slogan" width="200" height="20"></img>
+        <img src={slogan} alt="slogan" width="200" height="20"></img>
     </footer>
     )
 }

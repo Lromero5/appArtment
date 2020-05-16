@@ -1,6 +1,7 @@
 import React from 'react';
 import householdData from '../utils/householdData';
 import { Link } from 'react-router-dom';
+import Footer from '../components/Footer';
 
 
 function HomeScreen(props){
@@ -8,16 +9,15 @@ function HomeScreen(props){
        
         <div>
              <div classNameName="profile-info">
-                <h2>Hi! = User</h2>
+                <h2>Hi! User.name</h2>
                     <p>You currently belong to:</p>
                         <ul classNameName="households">
-                             { householdData.households.map(household => 
+                             { householdData.household.map(house => 
                                  <li>
                                     <div classNameName="houselhold">
-                                        <Link to='/household'>{household.name}</Link>
+                                        <Link to={'/household/' + house.id}>{house.name}</Link>
                                     </div>
-                                </li>)
-}
+                                </li>)}
                         </ul>
             </div>
  
@@ -46,9 +46,7 @@ function HomeScreen(props){
         </form>
     </div>
 
-    <footer className="footer">
-       <img src="./images/bless.png" alt="slogan" width="200" height="20"></img>
-   </footer>
+   <Footer/>
    </div>
     )
 }
