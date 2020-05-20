@@ -5,8 +5,8 @@ import Account from './pages/Account';
 import HomeScreen from './pages/HomeScreen';
 import LogOut from './pages/LogOut';
 import Navbar from './components/Navbar';
-// import SignIn from './pages/SignIn';
-// import SignUp from './pages/SignUp';
+import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp';
 
 function App() {
   return (
@@ -17,6 +17,9 @@ function App() {
               <Route path="/" exact={true} component={HomeScreen}></Route> 
               <Route path="/household/:id" component={Account}></Route>
               <Route path='/logout' component={LogOut}></Route>
+              <Route path='/signin' component={SignIn}></Route>
+              <Route path='/signup' component={SignUp}></Route>
+
     </div>
     </div>
     </Router> 
