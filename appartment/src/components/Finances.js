@@ -1,7 +1,7 @@
 import React from 'react'
 
-function Finances(props){
-    return(
+function Finances(props) {
+    return (
         <div>
             Add Finances Component
         </div>

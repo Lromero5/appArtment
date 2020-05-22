@@ -1,67 +1,73 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>App Artment</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css"/>
-    <script src='main.js'></script>
-</head>
 
-<body>
-    <div class="grid-container">
-        <header class="header">
-            <div class="brand">
-                <a href="index.html">
-                    <img src="./images/house.png" alt="logo-appartment" width="80" height="80">
-                </a>
-            </div>
-            <div class="header-links">
-                <a href=home.html>Home</a>
-                <a href="logout.html">Log Out</a>
-            </div>
-        </header>
-        <main class="main">
+    <head>
+        <meta charset='utf-8'>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+        <title>App Artment</title>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
+        <script src='main.js'></script>
+    </head>
+
+    <body>
+
+        <div id="root"></div>
+
+        <div class="grid-container">
+            <header class="header">
+                <div class="brand">
+                    <a href="index.html">
+                        <img src="./images/house.png" alt="logo-appartment" width="80" height="80">
+                    </a>
+                </div>
+                <div class="header-links">
+                    <a href=home.html>Home</a>
+                    <a href="logout.html">Log Out</a>
+                </div>
+            </header>
+            <main class="main">
                 <div class="profile-info">
                     <h2>Hi! = User</h2>
-                        <p>You currently belong to _ number of households</p>
-                        <br>
-                            <ul class="households">
-                                <li>
-                                    <div class="houselhold">
-                                        <a href="household.html">Households</a>
-                                    </div>
-                                </li>
-                            </ul>
+                    <p>You currently belong to _ number of households</p>
+                    <br>
+                    <ul class="households">
+                        <li>
+                            <div class="houselhold">
+                                <a href="household.html">Households</a>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
                 <div class="join"></div>
-                    <h3>Feeling FOMO?</h3>
-                    <form>
-                        <label>Join your roommates:</label>
-                        <input type="text" id="hname" name=hname placeholder="Household name">
-                        <br>
-                        <input type="submit" value="Join" class="btn btn-warning">
-                    </form>
+                <h3>Feeling FOMO?</h3>
+                <form>
+                    <label>Join your roommates:</label>
+                    <input type="text" id="hname" name=hname placeholder="Household name">
                     <br>
-                    <hr>
-                </div> 
-                <div class="create">
-                    <form>
-                        <label>Create your own:</label>
-                        <input type="text" id="hname" name=hname placeholder="Marcella St">
-                        <br>
-                        <label>Add members:</label>
-                        <input type="text id=hmember" name="hmember" placeholder="Emails here">
-                        <br>
-                        <input type="submit" value="Create" class="btn btn-warning">
-                    </form>
-                </div>
+                    <input type="submit" value="Join" class="btn btn-warning">
+                </form>
+                <br>
+                <hr>
+        </div>
+        <div class="create">
+            <form>
+                <label>Create your own:</label>
+                <input type="text" id="hname" name=hname placeholder="Marcella St">
+                <br>
+                <label>Add members:</label>
+                <input type="text id=hmember" name="hmember" placeholder="Emails here">
+                <br>
+                <input type="submit" value="Create" class="btn btn-warning">
+            </form>
+        </div>
         </main>
         <footer class="footer">
             <img src="./images/bless.png" width="200" height="20">
         </footer>
-    </div>
-</body>
+        </div>
+    </body>
+
 </html>
