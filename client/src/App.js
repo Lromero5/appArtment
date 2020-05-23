@@ -17,8 +17,8 @@ function App() {
               <Route path="/" exact={true} component={HomeScreen}></Route> 
               <Route path="/household/:id" component={Account}></Route>
               <Route path='/logout' component={LogOut}></Route>
-              <Route path='/signin' component={SignIn}></Route>
-              <Route path='/signup' component={SignUp}></Route>
+              <Route path='/login' component={SignIn}></Route>
+              <Route path='/register' component={SignUp}></Route>
 
     </div>
     </div>
