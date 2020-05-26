@@ -7,16 +7,20 @@ import Calendar from '../components/Calendar'
 
 
 function Account(props){
-    console.log(props.match.params.id)
-    // const house = householdData.household.find(home => home.id === props.match.params.id)
+  
     return(
-    <div>
-        <div className="head-title">
-            <h1>Hi user.name!</h1>
+    <div className="card">
+        <div className="card">
+        <div className="households">
         </div>
         <Members/>
+        </div>
+        <div className="card">
         <Calendar/>
+        </div>
+        <div className="card">
         <Finances/>
+        </div>
         <Footer/>
     </div>
     )

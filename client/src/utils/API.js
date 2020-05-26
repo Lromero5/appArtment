@@ -13,7 +13,15 @@ export default {
     deleteHousehold: function(id){
         return axios.delete("/api/households/" + id)
     },
+    //Creates a household
     createHousehold: function(householdData){
         return axios.post("/api/households", householdData)
+    },
+    //Adds a member to a certain household
+    updateHousehold: function(id, memberData){
+        return axios.put("/api/households/" + id, memberData)
+    },
+    getMembers: function(id){
+        return axios.get("api/users/" + id)
     }
 };

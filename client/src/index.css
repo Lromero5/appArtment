@@ -98,19 +98,17 @@ a:hover{
   height: 100%;
 }
 
-.profile-info main{
+/* .profile-info main{
   position: relative;
-}
+} */
 
-.details{
-  /* display: flex; */
+/* .details{
   justify-content: space-between;
   align-items: flex-start;
   width: fit-content;
   padding-left: 40px;
-  /* border: black;
-  border-radius: 0.5 rem; */
-}
+  */
+/* }
 
 .details-info{
   flex: 1 1 30 rem;  
@@ -130,7 +128,7 @@ a:hover{
 
 .details-info li, .details-action li{
   margin-bottom: 1 rem;
-}
+} */
 
 
 .pending{
@@ -150,4 +148,55 @@ a:hover{
   padding: 1 rem;
   border: .1 rem #808080 solid;
   cursor: pointer;
+}
+
+.card {
+  padding-top: 10px;
+  background: #fff;
+  border-radius: 2px;
+  height: 440px;
+  margin: 1rem;
+  position: relative;
+  width: 400px;
+  box-shadow: 0 3px 6px #999, 0 3px 6px #999;
+  text-align: center;
+}
+
+
+.card > .households {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-size: 15px;
+  text-align: center;
+}
+
+.card > .households > ul {
+  list-style-type: none;
+}
+
+.card > .households > ul > li {
+  margin-top: 18px;
+}
+
+.btn {
+	padding: 10px 40px;
+  margin: auto;
+	border-radius: 10px;
+	color: #ec6447;
+  text-decoration: none;
+	background-color: #fdd716;
+	border-bottom: 5px solid #D1B358;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  height: 40px;
+  width: 20px;
+  text-align: center;
+}	
+
+.members {
+  text-align: left;
+  padding: 60;
+  font-size: 15px;
 }
