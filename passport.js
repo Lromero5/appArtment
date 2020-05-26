@@ -17,17 +17,24 @@ passport.use(new JwtStrategy({
     secretOrKey : "NoobCoder"
 },(payload,done)=>{
     User.findById({_id : payload.sub},(err,user)=>{
-        if(err)
+        if(err) {
+        // console.log('err when trying to find user', err)
             return done(err,false);
-        if(user)
+        }
+        if(user) {
+        // console.log('we found the user passport', user)
             return done(null,user);
-        else
+        }
+        else {
+            // console.log('we did not find a user!! pasport stuff')
             return done(null,false);
+        }
     });
 }));
 
 // authenticated local strategy using username and password
 passport.use(new LocalStrategy((username,password,done)=>{
+    // console.log('Inisde local strategy passport!!')
     User.findOne({username},(err,user)=>{
         // something went wrong with database
         if(err)

@@ -12,12 +12,12 @@ const signToken = userID =>{
   },"NoobCoder",{expiresIn : "1h"});
 }
 
-// Matches with "/api/users"
+//Matches with "/api/users"
 router.route("/")
   .get(userController.findAll)
   .post(userController.create);
 
-// Matches with "/api/users/:id"
+// // Matches with "/api/users/:id"
 router
   .route("/:id")
   .get(userController.findById)
@@ -61,8 +61,10 @@ router.get('/logout',passport.authenticate('jwt',{session : false}),(req,res)=>{
 
 // //this is used for persistance. This route will allow the user to stay logged in, if they don't log out.
 router.get('/authenticated',passport.authenticate('jwt',{session : false}),(req,res)=>{
+    console.log('We hit hte authenticated route', req.user)
+    //res.send('AUTH ROUTE WORKING!!!!')
     const {username} = req.user;
-    res.status(200).json({isAuthenticated : true, user : {username}});
+    res.json({isAuthenticated : true, user : {username}});
 });
 
 

@@ -16,8 +16,9 @@ function SignIn(props){
     const onSubmit = e =>{
         e.preventDefault();
         AuthService.login(user).then(data=>{
-            // console.log(data);
+            // console.log('WE JUST LOGGED IN and got this back',data);
             const { isAuthenticated,user,message} = data;
+            // console.log('this is users and isAutheticatd' , user, isAuthenticated)
             if(isAuthenticated){
                 authContext.setUser(user);
                 authContext.setIsAuthenticated(isAuthenticated);

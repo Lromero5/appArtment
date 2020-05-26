@@ -33,14 +33,24 @@ export default {
     },
     //this will sync our frontend and our backend. If we were already authenticated, that will remain even if we close the react acpp
     isAuthenticated : ()=>{
-        return fetch('api/users/authenticated')
-                .then(res=>{
-                    console.log("this is the authenticated response", res)
-                    if(res.status !== 401)
-                        return res.json().then(data => data);
-                    else
-                        return { isAuthenticated : false, user : {username : ""}};
-                });
+        return fetch('http://127.0.0.1:3001/api/users/authenticated')
+        // return fetch('api/users/authenticated')     
+        .then(res=>{
+            console.log("this is the authenticated response", res)
+            if(res.status !== 401)
+                return res.json().then(data => data);
+            else
+                return { isAuthenticated : false, user : {username : ""}};
+        });
+            // .then(res=>{ 
+            //         res.json().then(data => {
+            //             console.log("this is the authenticated response", data)   
+            //         });
+            //         if(res.status !== 401)
+            //             return res.json().then(data => data);
+            //         else
+            //             return { isAuthenticated : false, user : {username : ""}};
+            //     });
     }
 
 }

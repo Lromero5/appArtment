@@ -15,7 +15,7 @@ function App() {
       <Navbar/>
     <div className="grid-container">  
               <Route path="/" exact={true} component={HomeScreen}></Route> 
-              <Route path="/household/:id" component={Account}></Route>
+              <Route path="/household/:id" component={Account} />
               <Route path='/logout' component={LogOut}></Route>
               <Route path='/login' component={SignIn}></Route>
               <Route path='/register' component={SignUp}></Route>
