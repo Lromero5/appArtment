@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import API from '../utils/API';
-import AuthService from '../Services/AuthService'
+// import AuthService from '../Services/AuthService'
 
 
 function HomeScreen(props){
@@ -21,13 +21,6 @@ function HomeScreen(props){
         .catch( err => console.log(err));
     }
 
-    function testAuth(){
-        AuthService.isAuthenticated()
-        .then(res => {
-           console.log('WE GOT REST from auth test',res)
-        })
-        .catch( err => console.log('WE GOT AN ERR Auth test', err));
-    }
     
 
     function handleInputChange(event){
@@ -103,7 +96,7 @@ function HomeScreen(props){
         <br/>
         <hr/>
     </div>
-    <button onClick={testAuth}>AUTH TEST BUTTON!!</button>
+   
    <Footer/>
    </div>
     )

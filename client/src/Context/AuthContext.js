@@ -17,7 +17,6 @@ export default ({ children })=>{
     },[]);
 
 
-    // console.log('IN CONTEXT FILE!!!  isAuthenticaetd', isAuthenticated)
     return (
         <div>
             {!isLoaded ? <h1>Loading</h1> : 

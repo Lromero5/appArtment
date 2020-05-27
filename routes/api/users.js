@@ -20,7 +20,7 @@ router.route("/")
 // // Matches with "/api/users/:id"
 router
   .route("/:id")
-  .get(userController.findById)
+//   .get(userController.findById)
   .put(userController.update)
   .delete(userController.remove);
 
@@ -62,7 +62,6 @@ router.get('/logout',passport.authenticate('jwt',{session : false}),(req,res)=>{
 // //this is used for persistance. This route will allow the user to stay logged in, if they don't log out.
 router.get('/authenticated',passport.authenticate('jwt',{session : false}),(req,res)=>{
     console.log('We hit hte authenticated route', req.user)
-    //res.send('AUTH ROUTE WORKING!!!!')
     const {username} = req.user;
     res.json({isAuthenticated : true, user : {username}});
 });
