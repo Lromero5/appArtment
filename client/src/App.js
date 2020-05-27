@@ -8,17 +8,19 @@ import Navbar from './components/Navbar';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 
+
 function App() {
+
   return (
     <Router>
       <div>
       <Navbar/>
     <div className="grid-container">  
               <Route path="/" exact={true} component={HomeScreen}></Route> 
-              <Route path="/household/:id" component={Account}></Route>
+              <Route path="/household/:id" component={Account} />
               <Route path='/logout' component={LogOut}></Route>
-              <Route path='/signin' component={SignIn}></Route>
-              <Route path='/signup' component={SignUp}></Route>
+              <Route path='/login' component={SignIn}></Route>
+              <Route path='/register' component={SignUp}></Route>
 
     </div>
     </div>

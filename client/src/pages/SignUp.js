@@ -1,71 +1,71 @@
-import React from 'react';
+import React, {useState,useRef,useEffect} from 'react';
+import AuthService from '../Services/AuthService';
+import Message from '../components/Message';
 
 function SignUp(props){
 
-    // const [user,setUser] = useState({username: "", password : "", role : ""});
-    // const [message,setMessage] = useState(null);
-    // let timerID = useRef(null);
+    const [user,setUser] = useState({username: "", password : "", email : ""});
+    const [message,setMessage] = useState(null);
+    let timerID = useRef(null);
 
-    // useEffect(()=>{
-    //     return ()=>{
-    //         clearTimeout(timerID);
-    //     }
-    // },[]);
+    useEffect(()=>{
+        return ()=>{
+            clearTimeout(timerID);
+        }
+    },[]);
 
-    // const onChange = e =>{
-    //     setUser({...user,[e.target.name] : e.target.value});
-    // }
+    const onChange = e =>{
+        setUser({...user,[e.target.name] : e.target.value});
+    }
 
-    // const resetForm = ()=>{
-    //     setUser({username : "", password : "",role : ""});
-    // }
+    const resetForm = ()=>{
+        setUser({username : "", password : "",email : ""});
+    }
 
-    // const onSubmit = e =>{
-    //     e.preventDefault();
-    //     AuthService.register(user).then(data=>{
-    //         const { message } = data;
-    //         setMessage(message);
-    //         resetForm();
-    //         if(!message.msgError){
-    //             timerID = setTimeout(()=>{
-    //                 props.history.push('/login');
-    //             },2000)
-    //         }
-    //     });
-    // }
-
+    const onSubmit = e =>{
+        e.preventDefault();
+        AuthService.register(user).then(data=>{
+            const { message } = data;
+            setMessage(message);
+            resetForm();
+            if(!message.msgError){
+                timerID = setTimeout(()=>{
+                    props.history.push('/login');
+                },2000)
+            }
+        });
+    }
 
     return(
     <div>
         <div>
-            <form >
-            {/* onSubmit={onSubmit} */}
+            <form onSubmit={onSubmit}>
                 <h3>Please Register</h3>
                 <label htmlFor="username" className="sr-only">Username: </label>
                 <input type="text" 
                        name="username" 
-                    //    value={user.username}
-                    //    onChange={onChange} 
+                       value={user.username}
+                       onChange={onChange} 
                        className="form-control" 
                        placeholder="Enter Username"/>
                 <label htmlFor="password" className="sr-only">Password: </label>
                 <input type="password" 
                        name="password"
-                    //    value={user.password} 
-                    //    onChange={onChange} 
+                       value={user.password} 
+                       onChange={onChange} 
                        className="form-control" 
                        placeholder="Enter Password"/>
-                <label htmlFor="role" className="sr-only">Role: </label>
+                <label htmlFor="role" className="sr-only">Email: </label>
                 <input type="text" 
-                       name="role"
-                    //    value={user.role}  
-                    //    onChange={onChange} 
+                       name="email"
+                       value={user.email}  
+                       onChange={onChange} 
                        className="form-control" 
-                       placeholder="Enter role (admin/user)"/>
-                <button className="btn btn-lg btn-primary btn-block" 
+                       placeholder="Enter your email"/>
+                <button className="btn" 
                         type="submit">Register</button>
             </form>
-            {/* {message ? <Message message={message}/> : null} */}
+            {message ? <Message message={message}/> : null}
         </div>
     </div>
     )
