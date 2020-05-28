@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import API from '../utils/API';
+// import AuthService from '../Services/AuthService'
 
 
 function HomeScreen(props){
@@ -22,6 +23,7 @@ function HomeScreen(props){
             setHouseholds(res.data)})
         .catch( err => console.log(err));
     }
+
     
     function getThisHousehold(){
         
@@ -105,6 +107,7 @@ function HomeScreen(props){
         <br/>
         <hr/>
     </div>
+   
    <Footer/>
    </div>
     )
