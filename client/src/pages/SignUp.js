@@ -1,63 +1,4 @@
-// import React, {useState} from 'react';
-// import API from '../utils/API'
-
-
-// function SignUp(props){
-
-//     const [user,setUser] = useState({username: "", password : "", email : ""});
-
-//     const onChange = event =>{
-//         // console.log('we r typing!!', event.target.value)
-//         // console.log('this is who to update!!', event.target.name)
-//         setUser({...user, [event.target.name] : event.target.value})
-//     }
-
-//     const onSubmit = e =>{
-//         e.preventDefault()
-//         API.signup(user).then(function(data) {
-//             // console.log('we logged in and got this back ?', data)
-//             // console.log('these r our props!!!', props)
-//             props.history.push('/login')
-//         })
-//     }
-
-
-//     return(
-//     <div>
-//         <div>
-//             <form >
-//                 <h3>Please Register</h3>
-//                 <label htmlFor="username" className="sr-only">Username: </label>
-//                 <input type="text" 
-//                        name="username" 
-//                        value={user.username}
-//                        onChange={onChange} 
-//                        className="form-control" 
-//                        placeholder="Enter Username"/>
-//                 <label htmlFor="password" className="sr-only">Password: </label>
-//                 <input type="password" 
-//                        name="password"
-//                        value={user.password} 
-//                        onChange={onChange} 
-//                        className="form-control" 
-//                        placeholder="Enter Password"/>
-//                 <label htmlFor="role" className="sr-only">Role: </label>
-//                 <input type="text" 
-//                        name="email"
-//                        value={user.email}  
-//                        onChange={onChange} 
-//                        className="form-control" 
-//                        placeholder="Enter email"/>
-//             </form>
-//             <button onClick={onSubmit} className="btn btn-lg btn-primary btn-block">Register</button>
-//         </div>
-//     </div>
-//     )
-// }
-
-// export default SignUp;
-
-import React, { useRef } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useStoreContext } from "../utils/GlobalState";
 import { LOGIN } from "../utils/actions";
@@ -65,24 +6,27 @@ import API from "../utils/API";
 
 function Signup() {
     const [state, dispatch] = useStoreContext();
-    const usernameRef = useRef();
-    const emailRef = useRef();
-    const passRef = useRef();
+    const [user,setUser] = useState({username: "", password : "", email : ""});
+
+
+    const onChange = event =>{
+        // console.log('this is who to update!!', event.target.name)
+        setUser({...user, [event.target.name] : event.target.value})
+    }
 
     const history = useHistory();
     const handleClick = (e) => {
         e.preventDefault();
-        API.signup({ username: usernameRef.current.value, password: passRef.current.value, email: emailRef.current.value, })
-            .then(user => {
-                console.log("API RESPONSE");
-                console.log(user)
-                history.push("/myhomescreen");
+        API.signup(user)
+            .then(function(data) {
+                const userId = data.data._id;
+                history.push("/myhomescreen/" + userId);
                 dispatch({
                     type: LOGIN,
-                    _id: user.data._id
+                    _id: data.data._id
                 })
-            });
-      
+                console.log("Just signed up and this is our users id", userId);
+            })
     }
 
     return (
@@ -92,15 +36,15 @@ function Signup() {
             <form className="mt-4 col-6">
                 <div className="form-group">
                     <label>Username </label>
-                    <input ref={usernameRef} type="username" className="form-control" placeholder="Enter username" />
+                    <input name="username" onChange={onChange} type="username" className="form-control" placeholder="Enter username" />
                 </div>
                 <div className="form-group">
                     <label>Password</label>
-                    <input ref={passRef} type="password" className="form-control" placeholder="Password" />
+                    <input name="password" onChange={onChange} type="password" className="form-control" placeholder="Password" />
                 </div>
                 <div className="form-group">
                     <label>Email address</label>
-                    <input ref={emailRef} type="email" className="form-control" aria-describedby="emailHelp" placeholder="Enter email" />
+                    <input name="email" onChange={onChange} type="email" className="form-control" aria-describedby="emailHelp" placeholder="Enter email" />
                 </div>
 
 

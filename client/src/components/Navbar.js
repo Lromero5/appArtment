@@ -22,12 +22,12 @@ function Navbar(){
     }, []);
 
     function getNav(loggedin) {
-        console.log(" are  we logged in?", loggedin)
+        console.log(" Navbar- are  we logged in?", loggedin)
         if (loggedin) {
             return (
                 <div className="navbar-nav">
-                    <Link className="nav-item nav-link active" to="/myhomescreen">
-                        Home
+                    <Link className="nav-item nav-link active" to="/myhomescreen/:id">
+                        My Home Screen
                     </Link>
                     <Link to="/household/:id"> My Household</Link>
                     <Link className="nav-item nav-link" onClick={() => logout()} to="/">

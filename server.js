@@ -37,8 +37,7 @@ app.use(function(err, req, res, next) {
 });
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI ||"mongodb://localhost:27017/project3practice" );
-// "mongodb://user:appartment3@ds253537.mlab.com:53537/heroku_3sqqpzd3"
+mongoose.connect(process.env.MONGODB_URI ||"mongodb://user:appartment3@ds253537.mlab.com:53537/heroku_3sqqpzd3");
 
 // Start the API server
 app.listen(PORT, function() {
