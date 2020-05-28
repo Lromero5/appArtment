@@ -1,5 +1,7 @@
 const router = require("express").Router();
 const userController = require("../../controllers/userController");
+const JWT = require('jsonwebtoken');
+const User = require('../../models/users');
 
 //new code
 const isAuthenticated = require("../../config/isAuthenticated");
@@ -11,10 +13,10 @@ router.route("/")
   .get(userController.findAll)
   .post(userController.create);
 
-// Matches with "/api/users/:id"
+// // Matches with "/api/users/:id"
 router
   .route("/:id")
-  .get(userController.findById)
+//   .get(userController.findById)
   .put(userController.update)
   .delete(userController.remove);
 
