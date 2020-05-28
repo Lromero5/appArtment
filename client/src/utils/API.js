@@ -15,5 +15,13 @@ export default {
     },
     createHousehold: function(householdData){
         return axios.post("/api/households", householdData)
+    },
+    getTransactions:  function(id){
+        return axios.get(`/api/households/${id}/transaction`)
+    },
+
+    createTransaction: function(id, data){
+        return axios.post(`/api/households/${id}/transaction`, data)
     }
+    
 };

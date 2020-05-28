@@ -1,7 +1,7 @@
 import React from "react";
 import Footer from "../components/Footer";
 import Members from "../components/InfoMembers";
-import Finances from "../components/Finances";
+import Finance from "../components/Finance/Finance"
 import Calendar from "../components/Calendar";
 import Chores from "../components/Chores/Chores";
 
@@ -16,9 +16,9 @@ function Account(props) {
         <h1>Hi user.name!</h1>
       </div>
       <Members />
-      <Chores />
-      <Calendar />
-      <Finances />
+      <Finance/>
+      <Chores />      
+      <Calendar /> 
       <Footer />
     </div>
   );

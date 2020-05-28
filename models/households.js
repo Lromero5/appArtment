@@ -8,12 +8,23 @@ const householdSchema = new Schema({
   },
   members: [{
     type: mongoose.Schema.ObjectId, ref: "User"
-  }], //this should hold the user_id's from the users collection
+  }], 
   chores: [{
     type:mongoose.Schema.ObjectId, ref:"Chores"
-  }], //will be input by the users
+  }], 
+  //this is good
+  transactions: [{
+    type:mongoose.Schema.ObjectId, ref:"Transaction"
+
+  }]
+   
   
 });
+// householdSchema.methods.addTransaction=function({newTran}) {
+//   this.transactions.push({newTran})
+//   return this.transactions;
+  
+// }
 
 const Household = mongoose.model("Household", householdSchema);
 

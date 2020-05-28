@@ -7,19 +7,30 @@ import API from '../utils/API';
 function HomeScreen(props){
 
     const [households, setHouseholds] = useState([]);
+    const [household, setThisHousehold] = useState([]);
     const [formObject, setFormObject] = useState({})
 
     useEffect(() => {
         loadHouseholds()
+        getThisHousehold()
     }, [])
 
     function loadHouseholds(){
         API.getHouseholds()
-        .then(res => 
-            setHouseholds(res.data))
+        .then(res => {
+            console.log(res);
+            setHouseholds(res.data)})
         .catch( err => console.log(err));
     }
     
+    function getThisHousehold(){
+        
+        API.getHousehold("5ec734becc6ff0002aa496fb")
+        .then(res => { 
+            console.log(res.data); 
+            setThisHousehold(res.data)
+        })
+    }
 
     function handleInputChange(event){
         const {name, value} = event.target;
