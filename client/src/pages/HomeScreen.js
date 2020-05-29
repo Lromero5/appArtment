@@ -1,7 +1,15 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import API from "../utils/API";
+=======
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import Footer from '../components/Footer';
+import API from '../utils/API';
+// import AuthService from '../Services/AuthService'
+>>>>>>> f50f5cd1f4686958b1198a421dec5fdf6b60ba07
 
 function HomeScreen(props) {
   const [households, setHouseholds] = useState([]);
@@ -32,7 +40,12 @@ function HomeScreen(props) {
         .then((res) => loadHouseholds())
         .catch((err) => console.log(err));
     }
+<<<<<<< HEAD
   }
+=======
+
+    
+>>>>>>> f50f5cd1f4686958b1198a421dec5fdf6b60ba07
 
   return (
     <div>
@@ -98,7 +111,14 @@ function HomeScreen(props) {
       </div>
       <Footer />
     </div>
+<<<<<<< HEAD
   );
+=======
+   
+   <Footer/>
+   </div>
+    )
+>>>>>>> f50f5cd1f4686958b1198a421dec5fdf6b60ba07
 }
 
 export default HomeScreen;
