@@ -1,17 +1,12 @@
-<<<<<<< HEAD
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import Footer from "../components/Footer";
-import API from "../utils/API";
-=======
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import API from '../utils/API';
 // import AuthService from '../Services/AuthService'
->>>>>>> f50f5cd1f4686958b1198a421dec5fdf6b60ba07
+
 
 function HomeScreen(props) {
+  
   const [households, setHouseholds] = useState([]);
   const [formObject, setFormObject] = useState({});
 
@@ -21,15 +16,19 @@ function HomeScreen(props) {
 
   function loadHouseholds() {
     API.getHouseholds()
-      .then((res) => setHouseholds(res.data))
+      .then((res) => 
+            setHouseholds(res.data))
       .catch((err) => console.log(err));
   }
 
+  
+  
   function handleInputChange(event) {
     const { name, value } = event.target;
     setFormObject({ ...formObject, [name]: value });
   }
 
+  
   function handleFormSubmit(event) {
     event.preventDefault();
     console.log("working");
@@ -40,14 +39,10 @@ function HomeScreen(props) {
         .then((res) => loadHouseholds())
         .catch((err) => console.log(err));
     }
-<<<<<<< HEAD
   }
-=======
-
     
->>>>>>> f50f5cd1f4686958b1198a421dec5fdf6b60ba07
-
   return (
+    
     <div>
       <div className="profile-info">
         <h2>Hi! User.name</h2>
@@ -60,28 +55,24 @@ function HomeScreen(props) {
               </div>
 
               <br></br>
-            </li>
-          ))}
+            </li>))}
         </ul>
       </div>
 
+    
       <div className="create">
         <form>
           <label>Create your own: </label>
-          <input
-            type="text"
+          <input type="text"
             id="hname"
             name="name"
             placeholder="Household Name"
-            onChange={handleInputChange}
-          />
+            onChange={handleInputChange}/>
           <br />
-          <input
-            type="submit"
+          <input type="submit"
             value="Create"
             className="btn btn-warning"
-            onClick={handleFormSubmit}
-          />
+            onClick={handleFormSubmit}/>
           <br />
         </form>
       </div>
@@ -91,34 +82,24 @@ function HomeScreen(props) {
         <h3>Feeling FOMO?</h3>
         <form>
           <label>Join your roommates:</label>
-          <input
-            type="text"
+          <input type="text"
             id="hname"
             name="name"
             placeholder="Household name"
-            onChange={handleInputChange}
-          />
+            onChange={handleInputChange}/>
           <br />
-          <input
-            type="submit"
+          <input type="submit"
             value="Join"
             className="btn btn-warning"
-            onClick={handleFormSubmit}
-          />
+            onClick={handleFormSubmit}/>
         </form>
         <br />
         <hr />
       </div>
-      <Footer />
-    </div>
-<<<<<<< HEAD
-  );
-=======
    
    <Footer/>
    </div>
     )
->>>>>>> f50f5cd1f4686958b1198a421dec5fdf6b60ba07
 }
 
 export default HomeScreen;
