@@ -2,14 +2,15 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const choresSchema = new Schema({
-  name: { 
-    type: String, 
-    required: true 
-  }
- 
-  
+  task: {
+    type: String,
+    required: true,
+  },
+  completed: {
+    type: Boolean,
+  },
 });
 
-const Chores = mongoose.model("Chores", choresSchema);
+const Chore = mongoose.model("Chore", choresSchema);
 
-module.exports = Chores;
+module.exports = Chore;

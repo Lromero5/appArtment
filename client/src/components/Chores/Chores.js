@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import API from "../../utils/API";
 // import "./App.css";
 import TodoForm from "./TodoForm";
 import TodoList from "./TodoList";
@@ -10,35 +11,48 @@ function Chores() {
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
-    const storageTodos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
-    if (storageTodos) {
-      setTodos(storageTodos);
-    }
+    // const storageTodos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
+    API.getChores("5ecc800d2c0155578876c0bc")
+      .then((res) => {
+        console.log(res.data);
+        setTodos(res.data);
+      })
+      .catch((err) => console.log(err));
+
+    // if (storageTodos) {
+    //   setTodos(storageTodos);
+    // }
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todos));
-  }, [todos]);
+  // useEffect(() => {
+  //   localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todos));
+  // }, [todos]);
 
   function addTodo(todo) {
+    API.createChore(todo);
     setTodos([todo, ...todos]);
   }
 
-  function toggleComplete(id) {
+  function toggleComplete(todo) {
     setTodos(
-      todos.map((todo) => {
-        if (todo.id === id) {
+      todos.map((element) => {
+        if (element._id === todo._id) {
           return {
-            ...todo,
-            completed: !todo.completed,
+            ...element,
+            completed: !element.completed,
           };
         }
-        return todo;
+        return element;
       })
     );
+    API.updateChore(todo._id, {
+      ...todo,
+      completed: !todo.completed,
+    });
   }
   function removeTodo(id) {
-    setTodos(todos.filter((todo) => todo.id !== id));
+    setTodos(todos.filter((todo) => todo._id !== id));
+    API.deleteChore(id);
   }
 
   return (

@@ -1,28 +1,29 @@
-html{
-  font-size: 62.5%
+html {
+  font-size: 62.5%;
 }
 
-body{
+body {
   font: 1.6rem Helvetica;
   height: 100vh;
   margin: 0;
+  background-color: #ffc10736;
 }
 
-#root{
-  height: 100%
+#root {
+  height: 100%;
 }
-.grid-container{
+.grid-container {
   display: grid;
-  grid-template-areas: 
-  "header"
-  "main"
-  "footer";
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
   height: 100%;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 5 rem;
 }
 
-.header{
+.header {
   height: 70px;
   grid-area: header;
   background-color: #fdd716;
@@ -30,33 +31,33 @@ body{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding:10px;
+  padding: 10px;
 }
 
-.brand a{
+.brand a {
   color: #ffffff;
   font-size: 2.5 rem;
   font-weight: bold;
   text-decoration: none;
 }
 
-.header-links a{
-  color:#ec6447;
+.header-links a {
+  color: #ec6447;
   text-decoration: none;
 }
 
-.header-links a:hover{
-  color:#ec6447;
+.header-links a:hover {
+  color: #ec6447;
 }
 
-.main{
+.main {
   grid-area: main;
   padding: 40px;
   overflow: auto;
   padding-bottom: 100px;
 }
 
-.footer{
+.footer {
   background-color: #ec6447;
   position: fixed;
   justify-content: center;
@@ -64,18 +65,18 @@ body{
   align-items: center;
   /* height: 100%; */
   padding: 10px;
-  clear:both;
+  clear: both;
   left: 0;
   bottom: 0;
   width: 100%;
 }
 
-a{
+a {
   text-decoration: none;
 }
 
-a:hover{
-  color: whitesmoke
+a:hover {
+  color: whitesmoke;
 }
 
 .households {
@@ -88,23 +89,23 @@ a:hover{
   flex: 0 1 34rem;
   margin: 1 rem;
   height: 50 rem;
-  border-bottom: .1rem;
+  border-bottom: 0.1rem;
 }
 
-.household{
+.household {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
 }
 
-.profile-info main{
+.profile-info main {
   position: relative;
 }
 
-.details{
+.details {
   /* display: flex; */
-  justify-content: space-between;
+  justify-content: align-center;
   align-items: flex-start;
   width: fit-content;
   padding-left: 40px;
@@ -112,42 +113,40 @@ a:hover{
   border-radius: 0.5 rem; */
 }
 
-.details-info{
-  flex: 1 1 30 rem;  
+.details-info {
+  flex: 1 1 30 rem;
 }
 
-
-.details-action{
+.details-action {
   flex: 1 1 30 rem;
   padding-right: 100px;
-  
 }
 
-.details-info ul, .details-action ul{
+.details-info ul,
+.details-action ul {
   list-style-type: none;
-  padding: 0
+  padding: 0;
 }
 
-.details-info li, .details-action li{
+.details-info li,
+.details-action li {
   margin-bottom: 1 rem;
 }
 
-
-.pending{
+.pending {
   padding-left: 20px;
-  border: .1rem #808080 solid;
+  border: 0.1rem #808080 solid;
   border-radius: 0.5 rem;
   padding: 1 rem;
   justify-content: center;
 }
 
-.head-title{
+.head-title {
   text-align: center;
 }
 
-
-.button{
+.button {
   padding: 1 rem;
-  border: .1 rem #808080 solid;
+  border: 0.1 rem #808080 solid;
   cursor: pointer;
 }
