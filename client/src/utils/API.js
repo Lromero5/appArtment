@@ -1,6 +1,44 @@
-import axios from 'axios';
+import axios from "axios";
 
 export default {
+<<<<<<< HEAD
+  //Get all households
+  getHouseholds: function () {
+    return axios.get("/api/households");
+  },
+  //Get a household with the given id
+  getHousehold: function (id) {
+    return axios.get("/api/households/" + id);
+  },
+  //Deletes the household with the given id
+  deleteHousehold: function (id) {
+    return axios.delete("/api/households/" + id);
+  },
+  createHousehold: function (householdData) {
+    return axios.post("/api/households", householdData);
+  },
+
+  // Get a chore with the given household_id
+  getChores: function (household_id) {
+    console.log(household_id);
+    return axios.get("/api/chores");
+
+    // return axios.get("/api/chores/" + household_id);
+  },
+  //   //Deletes the chore with the given household_id
+  deleteChore: function (id) {
+    return axios.delete("/api/chores/" + id);
+  },
+
+  createChore: function (householdData) {
+    return axios.post("/api/chores", householdData);
+  },
+
+  updateChore: function (id, completed) {
+    return axios.put("/api/chores/" + id, completed);
+  },
+};
+=======
     //Get all households
     getHouseholds: function(){
         return axios.get("/api/households")
@@ -31,3 +69,4 @@ logout: function () {
 },
 
 };
+>>>>>>> f50f5cd1f4686958b1198a421dec5fdf6b60ba07

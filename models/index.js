@@ -1,5 +1,5 @@
-module.exports= {
-    Household: require("./households"),
-    User: require("./users"),
-    Chores: require("./chores")
-}
+module.exports = {
+  Household: require("./households"),
+  User: require("./users"),
+  Chore: require("./chores"),
+};
