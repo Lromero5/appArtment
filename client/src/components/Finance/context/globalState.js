@@ -1,63 +1,61 @@
-import React, {createContext, useState} from "react";
-import appReducer from "./appReducer";
+import React, {createContext, useState, useEffect} from "react";
 import API from "../../../utils/API";
 
-//Initial State
-// const initialState = {
-//     transactions:[
-//           { id: 1, text: 'Rent', amount: -500 },
-//           { id: 2, text: 'Light bill', amount: -50 },
-//           { id: 3, text: 'Groceries', amount: -100 },
-//           { id: 4, text: 'Gas bill', amount: -40 },
-//           { id: 5, text: "Tony's contribution", amount: 300}
-//         ]
-// }
 //create context
-export const GlobalContext = createContext()
+export const GlobalContext = createContext({
+
+})
 
 // provider component
-export const GlobalProvider = ({ children }) => {
-    // const[state, dispatch] = useReducer(appReducer, initialState);
+export const GlobalProvider = ({ houseID, children }) => {
     const [transactions, setTransactions] = useState([])
-    const [house_id, setHouse_id] = useState()
+    const [members, setMembers] = useState([])
     const [user_id, setUser_id] = useState()
+
+useEffect(() => {
+    getTransactions();
+},[houseID])
+
 //actions
-function deleteTransaction(id){
-//     dispatch({
-//         type: "DELETE_TRANSACTION",
-//         payload: id
-//     });
+const deleteTransaction= async(transaction)=>{
+    console.log(transaction);
+    await API.deleteTransaction(houseID, transaction);
+    getTransactions();
+
 }
-const getTransactions = async(house_id) => {
-    const res= await API.getTransactions(house_id);
-    console.log(res.data) 
+const getTransactions = async() => {
+    const {transactions, members} = await API.getTransactions(houseID);
+    setMembers(members)
+    setTransactions(transactions)
+}
+const addTransaction = async(newTransaction)=>{
+    console.log("from GlobalState:")
+    console.log(newTransaction);
+    await API.createTransaction(houseID, newTransaction);
+   getTransactions()
     
-    //  setTransactions(res.data)
-}
-const addTransaction = async(house_id,newTransaction)=>{
-    await API.createTransaction(house_id,newTransaction);
-   getTransactions(house_id)
-    
-}
-const setHousehold = async(house_id) => {
-    setHouse_id(house_id);
-    getTransactions(house_id)
 }
 
+// const setHousehold = async(house_id) => {
+//     setHouse_id(house_id);
+//     getTransactions(house_id)
+// }
 
-
-
-    return(<GlobalContext.Provider value={{
+    return(
+    <GlobalContext.Provider value={{
         transactions, 
         deleteTransaction,
         addTransaction,
         getTransactions,
-        house_id,
+        houseID,
         user_id,
         setUser_id,
-        setHousehold
+        members
     }}>
         {children}
-    </GlobalContext.Provider>)
+    </GlobalContext.Provider>
+    )
 
 }
+
+export const GlobalConsumer = GlobalContext.Consumer; 

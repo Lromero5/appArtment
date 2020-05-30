@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+
 const choresSchema = new Schema({
  
   users: [{
@@ -11,8 +12,11 @@ const choresSchema = new Schema({
   },
   completed: {
     type: Boolean,
+    default: false
   },
   
 });
+
 const Chores = mongoose.model("Chores", choresSchema);
+
 module.exports = Chores;

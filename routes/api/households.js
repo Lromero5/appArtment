@@ -16,6 +16,8 @@ router
 //"api/households/:id/transaction"
 router.route("/:id/transaction")
 .post(transactionController.create)
+
+router.route("/:id/transaction/:txID")
 .delete(transactionController.remove);
 
 module.exports = router;

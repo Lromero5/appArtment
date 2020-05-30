@@ -33,11 +33,16 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  remove: function(req, res) {
+  remove: function({params}, res) {
+    // console.log(`Delete ${body.name} (${body._id})`)
     db.Transaction
-      .findById({ _id: req.params.id })
-      .then(dbModel => dbModel.remove())
+      // .findById(req.body._id)
+      // .then(dbModel => dbModel.remove())
+      .deleteOne({_id: params.txID})
       .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
+      .catch(err => {
+        console.log(err);
+        res.status(422).json(err)
+      });
   }
 };

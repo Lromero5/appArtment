@@ -4,23 +4,29 @@ import {Balance} from "../Finance/balance"
 import {IncomeExpenses} from "../Finance/incomeExpenses"
 import {TransactionList} from "../Finance/transactionList"
 import {AddTransaction} from "../Finance/addTransaction"
-import {GlobalProvider} from "../Finance/context/globalState"
+import {GlobalConsumer} from "./context/globalState"
 
 import './Finance.css';
 
-function Finance() {
+function Finance({houseID}) {
   return  (
     
-    <GlobalProvider>
-      <Header/>   
-      <div className="containerFinance">
-      <Balance/>  
-      <IncomeExpenses/>
-      <TransactionList/>
-      <AddTransaction/>
-        
-      </div>  
-    </GlobalProvider>
+    <GlobalConsumer>
+      {(context) => {
+        return(
+        <>
+        <Header/>   
+        <div className="containerFinance">
+        <Balance context={context}/>  
+        <IncomeExpenses context={context}/>
+        <TransactionList 
+          context={context}
+          />
+        <AddTransaction context={context} />
+        </div>  
+        </>
+      )}}
+    </GlobalConsumer>
     
   );
 }

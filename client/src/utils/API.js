@@ -19,7 +19,7 @@ export default {
 
   // Get a chore with the given household_id
   getChores: function (household_id) {
-    console.log(household_id);
+    // console.log(household_id);
     return axios.get("/api/chores");
 
     // return axios.get("/api/chores/" + household_id);
@@ -38,13 +38,19 @@ export default {
   },
 
 
-    getTransactions:  function(id){
-        return axios.get(`/api/households/${id}/transaction`)
-    },
+  getTransactions:  async (id) => {
+      const res = await axios.get(`/api/households/${id}`);
+      return res.data;
+  },
 
-    createTransaction: function(id, data){
-        return axios.post(`/api/households/${id}/transaction`, data)
-    },
+  createTransaction: function(id, data){
+      return axios.post(`/api/households/${id}/transaction`, data)
+  },
+
+  deleteTransaction: function(id, {name, _id}){
+    console.log(`Delete ${name} (${_id})`)
+      return axios.delete(`/api/households/${id}/transaction/${_id}`)
+  },
 
 //newcode 
 login: function (userData) {

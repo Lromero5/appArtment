@@ -1,41 +1,65 @@
-import React, { useState, useContext } from 'react';
-import { GlobalContext } from "../Finance/context/globalState";
+import React, { useState } from 'react';
+import { GlobalConsumer } from './context/globalState';
+import Form from 'react-bootstrap/Form';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 
+export const AddTransaction = ({context}) => {
+  const {addTransaction,members} = context
+  
+  
+  const [newTransaction, setNewTransaction] = useState({
+    name:"",
+    amount:0,
+    isExpense: false,
+    user: ""
+  });
+  
+  const handleChange = ({name, value}) => {
 
-export const AddTransaction = () => {
-  const [text, setText] = useState("");
-  const [amount, setAmount] = useState(0);
-  const { addTransaction } = useContext(GlobalContext);
-  const onSubmit = e => {
-    e.preventDefault();
+    newTransaction.isExpense = (name != "amount") ? newTransaction.isExpense : 
+                               (+value < 0) ? true : false;
 
-    const newTransaction = {
-      // house_id: Math.floor(Math.random() * 100000000),
-      text,
-      amount: +amount
+    setNewTransaction({
+      ...newTransaction,
+      [name]:(name === "amount") ? +value : value
+    });
+  }
 
-    };
-    addTransaction(newTransaction)
-  };
+  const onSubmit = () => {
+    addTransaction(newTransaction);
+  }
 
   return (
-    <>
-      <h3>Add new transaction</h3>
-      <form onSubmit={onSubmit}>
-        <div className="form-control">
-          <label htmlFor="text">Text</label>
-          <input type="text" value={text} onChange={(e) => setText(e.target.value)} placeholder="Enter text..." />
-        </div>
-        <div className="form-control">
-          <label htmlFor="amount"
-          >Amount <br />
-            (negative - expense, positive - income)</label
-          >
-          <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="Enter amount..." />
-        </div>
-        <button className="btn-finance">Add transaction</button>
-      </form>
-
-    </>
+        <Card>
+          <Card.Header>Add a New Transaction</Card.Header>
+          <Card.Body>
+            <Form>
+            <Form.Group controlId="exampleForm.SelectCustomSizeSm">
+              <Form.Label>User</Form.Label>
+              <Form.Control as="select" size="lg" onChange={(e) => handleChange(e.target)} name="user"custom>
+                {members.map((member)=>{
+                  return (
+                    <option key={member._id} value={member._id} >
+                      {member.displayName}
+                    </option>
+                  )
+                })}
+              </Form.Control>
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Name</Form.Label>
+              <Form.Control name="name" type="text" onChange={(e) => handleChange(e.target)} />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Amount</Form.Label>
+              <Form.Control name="amount" type="text" onChange={(e) => handleChange(e.target)} />
+            </Form.Group>
+            <Button variant="primary" onClick={onSubmit}>
+              Add Transaction
+            </Button>
+          </Form>
+          </Card.Body>        
+        </Card>
   )
 }

@@ -35,6 +35,10 @@ function Signup() {
             <h2 className="text-center">SignUp</h2>
             <form className="mt-4 col-6">
                 <div className="form-group">
+                    <label>Display Name</label>
+                    <input name="displayName" onChange={onChange} type="username" className="form-control" placeholder="Enter display name" />
+                </div>
+                <div className="form-group">
                     <label>Username </label>
                     <input name="username" onChange={onChange} type="username" className="form-control" placeholder="Enter username" />
                 </div>
