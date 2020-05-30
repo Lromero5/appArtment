@@ -16,7 +16,6 @@ export default {
   createHousehold: function (householdData) {
     return axios.post("/api/households", householdData);
   },
-
   // Get a chore with the given household_id
   getChores: function (household_id) {
     // console.log(household_id);
