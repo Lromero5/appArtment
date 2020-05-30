@@ -1,37 +1,29 @@
 const mongoose = require("mongoose");
 const bcrypt = require('bcrypt');
 const Schema = mongoose.Schema;
-​
 const UserSchema = new Schema({
-  displayName: {
-    type: String,
-    trim: true,
-    required: true
-  },
-​
   username: {
     type: String,
     trim: true,
     required: true
   },
-​
+
   password: {
     type: String,
     required: true,
     // validate?
   },
-​
+
   email: {
     type: String,
     unique: true,
     match: [/.+@.+\..+/, "Please enter a valid e-mail address"]
   },
-​
+
   household_id: {
     type: mongoose.Schema.ObjectId, ref: "Household"
   }
 });
-
 UserSchema.pre('save',function(next){
   if(!this.isModified('password'))
       return next();
@@ -42,7 +34,6 @@ UserSchema.pre('save',function(next){
       next();
   });
 });
-
 UserSchema.methods.comparePassword = function(password,cb){
   // console.log('We are in compare passowrd user model!!')
   bcrypt.compare(password,this.password,(err,isMatch)=>{
@@ -55,8 +46,5 @@ UserSchema.methods.comparePassword = function(password,cb){
       }
   });
 }
-
-
 const User = mongoose.model("User", UserSchema);
-​
 module.exports = User;

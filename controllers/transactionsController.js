@@ -16,12 +16,15 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
+    const id = req.params.id
+    console.log(id)
     db.Transaction
       .create(req.body)
-      .then(dbModel => res.json(dbModel))
-      .then(({_id}) => db.Households
-      .findOneAndUpdate({_id:id}, {$push: {transactions: _id}},{new:true}))
-      .then(() => res.status(200).json({success: true}))
+      .then(({_id}) => {
+        console.log(_id);
+        db.Household.findOneAndUpdate({_id:id}, {$push: {transactions: [_id]}},{new:true})
+        .then(() => res.json({success: true}))
+      })
       .catch(err => res.status(422).json(err));
   },
   update: function(req, res) {

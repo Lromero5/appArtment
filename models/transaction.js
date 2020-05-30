@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-​
 const transactionSchema = new Schema({
   name: { 
     type: String, 
@@ -18,11 +17,8 @@ const transactionSchema = new Schema({
     type: mongoose.Schema.ObjectId, ref: "User"
   }
 });
-​
 const Transaction = mongoose.model("Transaction", transactionSchema);
-​
 module.exports = Transaction;
-
 // app.post("/submit:id",({params, body}, res) =>{
 //   id=params.id
 //  db.Transaction.create(body)
