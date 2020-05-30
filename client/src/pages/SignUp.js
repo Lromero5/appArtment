@@ -1,74 +1,58 @@
-import React, {useState,useRef,useEffect} from 'react';
-import AuthService from '../Services/AuthService';
-import Message from '../components/Message';
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+import { useStoreContext } from "../utils/GlobalState";
+import { LOGIN } from "../utils/actions";
+import API from "../utils/API";
 
-function SignUp(props){
-
+function Signup() {
+    const [state, dispatch] = useStoreContext();
     const [user,setUser] = useState({username: "", password : "", email : ""});
-    const [message,setMessage] = useState(null);
-    let timerID = useRef(null);
 
-    useEffect(()=>{
-        return ()=>{
-            clearTimeout(timerID);
-        }
-    },[]);
 
-    const onChange = e =>{
-        setUser({...user,[e.target.name] : e.target.value});
+    const onChange = event =>{
+        // console.log('this is who to update!!', event.target.name)
+        setUser({...user, [event.target.name] : event.target.value})
     }
 
-    const resetForm = ()=>{
-        setUser({username : "", password : "",email : ""});
-    }
-
-    const onSubmit = e =>{
+    const history = useHistory();
+    const handleClick = (e) => {
         e.preventDefault();
-        AuthService.register(user).then(data=>{
-            const { message } = data;
-            setMessage(message);
-            resetForm();
-            if(!message.msgError){
-                timerID = setTimeout(()=>{
-                    props.history.push('/login');
-                },2000)
-            }
-        });
+        API.signup(user)
+            .then(function(data) {
+                const userId = data.data._id;
+                history.push("/myhomescreen/" + userId);
+                dispatch({
+                    type: LOGIN,
+                    _id: data.data._id
+                })
+                console.log("Just signed up and this is our users id", userId);
+            })
     }
 
-    return(
-    <div>
-        <div>
-            <form onSubmit={onSubmit}>
-                <h3>Please Register</h3>
-                <label htmlFor="username" className="sr-only">Username: </label>
-                <input type="text" 
-                       name="username" 
-                       value={user.username}
-                       onChange={onChange} 
-                       className="form-control" 
-                       placeholder="Enter Username"/>
-                <label htmlFor="password" className="sr-only">Password: </label>
-                <input type="password" 
-                       name="password"
-                       value={user.password} 
-                       onChange={onChange} 
-                       className="form-control" 
-                       placeholder="Enter Password"/>
-                <label htmlFor="role" className="sr-only">Email: </label>
-                <input type="text" 
-                       name="email"
-                       value={user.email}  
-                       onChange={onChange} 
-                       className="form-control" 
-                       placeholder="Enter your email"/>
-                <button className="btn" 
-                        type="submit">Register</button>
+    return (
+
+        <div className="container my-5 bg-light p-5">
+            <h2 className="text-center">SignUp</h2>
+            <form className="mt-4 col-6">
+                <div className="form-group">
+                    <label>Username </label>
+                    <input name="username" onChange={onChange} type="username" className="form-control" placeholder="Enter username" />
+                </div>
+                <div className="form-group">
+                    <label>Password</label>
+                    <input name="password" onChange={onChange} type="password" className="form-control" placeholder="Password" />
+                </div>
+                <div className="form-group">
+                    <label>Email address</label>
+                    <input name="email" onChange={onChange} type="email" className="form-control" aria-describedby="emailHelp" placeholder="Enter email" />
+                </div>
+
+
+                <button onClick={handleClick} className="btn btn-dark btn-lg" data-toggle="modal" data-target=".bd-example-modal-sm">Submit</button>
+
             </form>
-            {message ? <Message message={message}/> : null}
         </div>
-    </div>
-    )
+    );
 }
 
-export default SignUp;
+export default Signup;

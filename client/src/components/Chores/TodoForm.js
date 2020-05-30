@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 
 function TodoForm({ addTodo }) {
   const [todo, setTodo] = useState({
-    id: "",
+    // _id: "",
     task: "",
     completed: false,
   });
@@ -16,9 +16,10 @@ function TodoForm({ addTodo }) {
   function handleSubmit(e) {
     e.preventDefault();
     if (todo.task.trim()) {
-      addTodo({ ...todo, id: uuidv4() });
+      addTodo(todo);
+      console.log(todo);
       // reset task input
-      setTodo({ ...todo, task: "" });
+      setTodo(todo);
     }
   }
 

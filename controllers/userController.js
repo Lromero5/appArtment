@@ -33,5 +33,16 @@ module.exports = {
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
-  }
+  },
+//new code
+signUp: function(req, res) {
+  console.log(req.body);
+  db.User.create(req.body)
+    .then(data => res.json(data))
+    .catch(err => {
+      console.log(err);
+      res.status(400).json(err);
+    });
+}
+
 };

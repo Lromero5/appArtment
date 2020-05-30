@@ -1,32 +1,12 @@
-.Chores {
-  text-align: center;
-  display: flex;
-  height: 100%;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
 body,
 html,
 #root {
   height: 100%;
 }
 
-.todo-form {
-  flex-direction: row;
-  align-items: center;
-  text-align: center;
-}
-
-li {
-  text-align: initial;
-}
-
-.MuiList-root {
-  text-align: center;
-  align-items: center;
-}
+/* .MuiTypography-h1 {
+  font-size: 4rem; 
+ } */
 
 .App-logo {
   height: 40vmin;
@@ -56,7 +36,6 @@ li {
 
 .App {
   text-align: center;
-  align-items: center;
 }
 
 @keyframes App-logo-spin {

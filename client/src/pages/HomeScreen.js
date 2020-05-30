@@ -5,7 +5,8 @@ import API from '../utils/API';
 // import AuthService from '../Services/AuthService'
 
 
-function HomeScreen(props){
+function HomeScreen(props) {
+  
 
     const [households, setHouseholds] = useState([]);
     const [household, setThisHousehold] = useState([]);
@@ -39,74 +40,81 @@ function HomeScreen(props){
         setFormObject({...formObject, [name]: value})
     }
 
+  
+  
+  function handleInputChange(event) {
+    const { name, value } = event.target;
+    setFormObject({ ...formObject, [name]: value });
+  }
 
-    function handleFormSubmit(event){
-        event.preventDefault();
-        console.log("working")
-        if(formObject.name){
-            API.createHousehold({
-                name: formObject.name
-            })
-            .then(res => loadHouseholds())
-            .catch(err => console.log(err))
-        }
+  
+  function handleFormSubmit(event) {
+    event.preventDefault();
+    console.log("working");
+    if (formObject.name) {
+      API.createHousehold({
+        name: formObject.name,
+      })
+        .then((res) => loadHouseholds())
+        .catch((err) => console.log(err));
     }
+  }
+    
+  return (
+    
+    <div>
+      <div className="profile-info">
+        <h2>Hi! User.name</h2>
+        <p>You currently belong to:</p>
+        <ul className="households">
+          {households.map((house) => (
+            <li key={house._id}>
+              <div className="household">
+                <Link to={"/household/" + house._id}>{house.name}</Link>
+              </div>
 
-    return(
-       
-        <div>
-             <div className="profile-info">
-                <h2>Hi! User.name</h2>
-                    <p>You currently belong to:</p>
-                        <ul className="households">
-                             { households.map(house => 
-                                 <li key={house._id}>
-                                    <div className="household">
-                                        <Link to={'/household/' + house._id}>{house.name}</Link>
-                                    </div>
-                                    
-                                    <br></br>
-                                </li>)}
-                        </ul>
-            </div>
- 
+              <br></br>
+            </li>))}
+        </ul>
+      </div>
 
-    <div className="create">
+    
+      <div className="create">
         <form>
-            <label>Create your own: </label>
-            <input type="text" 
-            id="hname" 
-            name="name" 
-            placeholder="Household Name" 
+          <label>Create your own: </label>
+          <input type="text"
+            id="hname"
+            name="name"
+            placeholder="Household Name"
             onChange={handleInputChange}/>
-            <br/>
-            <input type="submit" 
-            value="Create" 
-            className="btn btn-warning" 
+          <br />
+          <input type="submit"
+            value="Create"
+            className="btn btn-warning"
             onClick={handleFormSubmit}/>
-            <br/>
+          <br />
         </form>
-    </div>
-    <br></br>
+      </div>
+      <br></br>
 
-    <div className="join">
-            <h3>Feeling FOMO?</h3>
-            <form>
-            <label>Join your roommates:</label>
-            <input type="text" 
-            id="hname" 
-            name="name" 
+      <div className="join">
+        <h3>Feeling FOMO?</h3>
+        <form>
+          <label>Join your roommates:</label>
+          <input type="text"
+            id="hname"
+            name="name"
             placeholder="Household name"
             onChange={handleInputChange}/>
-            <br/>
-            <input type="submit" 
-            value="Join" 
+          <br />
+          <input type="submit"
+            value="Join"
             className="btn btn-warning"
             onClick={handleFormSubmit}/>
         </form>
-        <br/>
-        <hr/>
-    </div>
+        <br />
+        <hr />
+      </div>
    
    <Footer/>
    </div>

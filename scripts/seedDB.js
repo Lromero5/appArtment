@@ -79,31 +79,31 @@ const userSeed = [
     displayName: "Monica",
     username: "user_m1",
     password: "Monica",
-    email: "Monica@gmail.com"
-    
+    email: "Monica@gmail.com",
   },
   {
     displayName: "Lety",
     username: "lety123",
     password: "Lety",
-    email: "Lety@gmail.com"
-    
+    email: "Lety@gmail.com",
   },
   {
     displayName: "Carolina",
     username: "lady_C",
     password: "Carolina",
-    email: "Carolina@gmail.com"
-    
+    email: "Carolina@gmail.com",
   },
   {
     displayName: "Tony",
     username: "user_123",
     password: "Anthony",
-    email: "Anthony@gmail.com"    
+    email: "Anthony@gmail.com",
   },
 ];
 
+const householdSeed = {
+  name: "Project3",
+};
 
 const emptyDB = async()=>{
   let u = await db.User.deleteMany({});
