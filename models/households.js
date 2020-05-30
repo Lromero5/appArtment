@@ -6,19 +6,25 @@ const householdSchema = new Schema({
     type: String,
     required: true,
   },
-  members: [
-    {
-      type: mongoose.Schema.ObjectId,
-      ref: "User",
-    },
-  ], //this should hold the user_id's from the users collection
-  chores: [
-    {
-      type: mongoose.Schema.ObjectId,
-      ref: "Chore",
-    },
-  ], //will be input by the users
+  members: [{
+    type: mongoose.Schema.ObjectId, ref: "User"
+  }], 
+  chores: [{
+    type:mongoose.Schema.ObjectId, ref:"Chores"
+  }], 
+  //this is good
+  transactions: [{
+    type:mongoose.Schema.ObjectId, ref:"Transaction"
+
+  }]
+   
+  
 });
+// householdSchema.methods.addTransaction=function({newTran}) {
+//   this.transactions.push({newTran})
+//   return this.transactions;
+  
+// }
 
 const Household = mongoose.model("Household", householdSchema);
 

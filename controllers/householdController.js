@@ -5,14 +5,20 @@ module.exports = {
   findAll: function(req, res) {
     db.Household
       .find(req.query)
+      .populate("transactions")
+      .populate("members")
+      .populate("chores")
       .sort({ date: -1 })
-      .then(dbModel => res.json(dbModel))
+      .then(dbModel => {res.json(dbModel) })
       .catch(err => res.status(422).json(err));
   },
   findById: function(req, res) {
     db.Household
       .findById(req.params.id)
-      .then(dbModel => res.json(dbModel))
+      .populate("transactions")
+      .populate("members")
+      .populate("chores")
+      .then(houseData => res.json(houseData))
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
