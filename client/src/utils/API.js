@@ -2,20 +2,39 @@ import axios from "axios";
 
 export default {
   //Get all households
-  getHouseholds: function () {
-    return axios.get("/api/households");
-  },
-  //Get a household with the given id
-  getHousehold: function (id) {
-    return axios.get("/api/households/" + id);
-  },
-  //Deletes the household with the given id
-  deleteHousehold: function (id) {
-    return axios.delete("/api/households/" + id);
-  },
-  createHousehold: function (householdData) {
-    return axios.post("/api/households", householdData);
-  },
+  getHouseholds: function(){
+    return axios.get("/api/households")
+},
+    //Get a household with the given id
+    getHousehold: function(id){
+        return axios.get("/api/households/" + id)
+    },
+    //Deletes the household with the given id
+    deleteHousehold: function(id){
+        return axios.delete("/api/households/" + id)
+    },
+    createHousehold: function(householdData){
+        return axios.post("/api/households", householdData)
+    },
+    updateHousehold: function(id, memberData){
+        return axios.put("/api/households/" + id, memberData)
+    },
+    updateMember: function(id, memberId){
+        return axios.put("/api/households/"+ id, memberId)
+    },
+    getMembers: function(){
+        return axios.get("/api/users")
+    },
+    getMember: function(id){
+        return axios.get("/api/users/" + id)
+    },
+    createMember: function(userId){
+        return axios.post('/api/users', userId)
+    },
+    deleteMember: function(userId){
+        return axios.delete("/api/users/" + userId)
+    },
+
   // Get a chore with the given household_id
   getChores: function (household_id) {
     // console.log(household_id);

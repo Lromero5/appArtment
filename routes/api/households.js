@@ -11,13 +11,18 @@ router
   .route("/:id")
   .get(householdController.findById)
   .put(householdController.update)
-  .delete(householdController.remove);
+  .delete(householdController.remove)
+  .put(householdController.updateMember)
 
 //"api/households/:id/transaction"
-router.route("/:id/transaction")
+router
+.route("/:id/transaction")
 .post(transactionController.create)
 
-router.route("/:id/transaction/:txID")
+router
+.route("/:id/transaction/:txID")
 .delete(transactionController.remove);
+
+
 
 module.exports = router;

@@ -1,33 +1,63 @@
-import React, { useState } from 'react';
-import Footer from "../components/Footer";
-import Members from "../components/InfoMembers";
+import React, { useState, useEffect }  from "react";
+import Members from "../components/Members";
 import Finance from "../components/Finance/Finance";
-import Calendar from "../components/Calendar";
 import Chores from "../components/Chores/Chores";
+import { useParams } from "react-router-dom";
+import API from '../utils/API';
 import { GlobalProvider } from "../components/Finance/context/globalState";
 
+function Account(props){
+
+    const [household, setHousehold] = useState({});
+    const {id} = useParams([]) //Household ID the user belongs to
+
+    const houseID = props.match.params.id;
+
+    useEffect(() => {
+        loadHousehold(id);
+    }, [])
 
 
-// import householdData from '../utils/householdData';
+    function loadHousehold(id){
+        API.getHousehold(id)
+        .then(res => 
+            {setHousehold(res.data)})
+        .catch(err => console.log(err));
+    }
 
-function Account(props) {
-
- const houseID = props.match.params.id;
   
-  // const house = householdData.household.find(home => home.id === props.match.params.id)
-  return (
-    <GlobalProvider houseID={houseID}>
-      <div>
-        <div className="head-title">
-          <h1>Hi user.name!</h1>
+    return(
+        <div className="group">
+        <div className="data">
+        <h1 className="text">Welcome to: {household.name}</h1>
+        <h1 className="text">Your home ID is: {household._id}</h1>
         </div>
-        <Members />
+        <div className="row">
+        <GlobalProvider houseID={houseID}>
+        <br></br>
+
+        <div className="column">
+        <div className="card">
+        <div className="households">
+        <Members household={household}/>
+        </div>
+        </div>
+        </div>
+
+        <div className="column">
+        <div className="card">
+        <Chores/>
+        </div>
+        </div>
+
+        <div className="column">
+        <div className="card">
         <Finance/>
-        <Chores />      
-        <Calendar /> 
-        <Footer />
-      </div>
-    </GlobalProvider>
+        </div>
+        </div>
+        </GlobalProvider>
+    </div>
+    </div>
   );
 }
 

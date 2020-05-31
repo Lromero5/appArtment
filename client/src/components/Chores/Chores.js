@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from "react";
 import API from "../../utils/API";
-// import "./App.css";
 import TodoForm from "./TodoForm";
 import TodoList from "./TodoList";
 import Typography from "@material-ui/core/Typography";
+import { useParams } from "react-router-dom";
 
-const LOCAL_STORAGE_KEY = "react-todo-list-todos";
 
-function Chores() {
-  const [todos, setTodos] = useState([]);
+function Chores(props) {
+  const [chores, setChores] = useState([]);
+
+  const {id} = useParams(); //household ID
+
+  // console.log(id)
 
   useEffect(() => {
-    // const storageTodos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
     API.getChores("5ecc800d2c0155578876c0bc")
       .then((res) => {
         console.log(res.data);
-        setTodos(res.data);
+        setChores(res.data);
       })
       .catch((err) => console.log(err));
 
@@ -28,15 +30,15 @@ function Chores() {
   //   localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todos));
   // }, [todos]);
 
-  function addTodo(todo) {
-    API.createChore(todo);
-    setTodos([todo, ...todos]);
+  function addChore(chore) {
+    API.createChore(chore);
+    setChores([chore, ...chores]);
   }
 
-  function toggleComplete(todo) {
-    setTodos(
-      todos.map((element) => {
-        if (element._id === todo._id) {
+  function toggleComplete(chore) {
+    setChores(
+      chores.map((element) => {
+        if (element._id === chore._id) {
           return {
             ...element,
             completed: !element.completed,
@@ -45,13 +47,13 @@ function Chores() {
         return element;
       })
     );
-    API.updateChore(todo._id, {
-      ...todo,
-      completed: !todo.completed,
+    API.updateChore(chore._id, {
+      ...chore,
+      completed: !chore.completed,
     });
   }
-  function removeTodo(id) {
-    setTodos(todos.filter((todo) => todo._id !== id));
+  function removeChore(id) {
+    setChores(chores.filter((chore) => chore._id !== id));
     API.deleteChore(id);
   }
 
@@ -60,11 +62,11 @@ function Chores() {
       <Typography style={{ padding: 16 }} variant="h1">
         Chores
       </Typography>
-      <TodoForm addTodo={addTodo} />
+      <TodoForm addChore={addChore} />
       <TodoList
-        todos={todos}
+        chores={chores}
         toggleComplete={toggleComplete}
-        removeTodo={removeTodo}
+        removeChore={removeChore}
       />
     </div>
   );

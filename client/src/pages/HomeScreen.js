@@ -1,122 +1,145 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import Footer from '../components/Footer';
+import { Link, useParams } from 'react-router-dom';
 import API from '../utils/API';
-// import AuthService from '../Services/AuthService'
 
-
-function HomeScreen(props) {
-  
+function HomeScreen(props){
 
     const [households, setHouseholds] = useState([]);
-    const [household, setThisHousehold] = useState([]);
-    const [formObject, setFormObject] = useState({})
+    const [formObject, setFormObject] = useState({});
+    const [member, setMember] = useState([]);
+    // const [userHousehold, setUserHousehold] = useState([]);
+    const {id} = useParams([]) // User ID
+
+
+    const memberData = {
+        members: id}
+   
 
     useEffect(() => {
         loadHouseholds()
-        getThisHousehold()
+        loadMember(id)
     }, [])
 
+    //Loads all existing households in the db
     function loadHouseholds(){
         API.getHouseholds()
-        .then(res => {
-            console.log(res);
-            setHouseholds(res.data)})
+        .then(res => 
+            {setHouseholds(res.data)})
         .catch( err => console.log(err));
     }
 
-    
-    function getThisHousehold(){
-        
-        API.getHousehold("5ec734becc6ff0002aa496fb")
-        .then(res => { 
-            console.log(res.data); 
-            setThisHousehold(res.data)
-        })
+    //Loads logged in user's username
+    function loadMember(id){
+        API.getMember(id)
+        .then(res => {
+            setMember(res.data.username)})
+        .catch(err => console.log(err))
     }
 
+    //Handles value
     function handleInputChange(event){
         const {name, value} = event.target;
         setFormObject({...formObject, [name]: value})
     }
 
-  
-  
-  function handleInputChange(event) {
-    const { name, value } = event.target;
-    setFormObject({ ...formObject, [name]: value });
-  }
-
-  
-  function handleFormSubmit(event) {
-    event.preventDefault();
-    console.log("working");
-    if (formObject.name) {
-      API.createHousehold({
-        name: formObject.name,
-      })
-        .then((res) => loadHouseholds())
-        .catch((err) => console.log(err));
+    function handleFormSubmit(event){
+        event.preventDefault();
+        if(formObject.name){
+            API.createHousehold({
+                name: formObject.name
+            })
+            .then(res => 
+                API.updateMember(res.data._id, memberData))
+            .then(res => loadHouseholds())
+            .catch(err => console.log(err))
+        }
+        else if(formObject.household_id){
+            API.updateMember(formObject.household_id, memberData)
+            .then(alert('You have joined ' + formObject.household_id))
+            .then(res => console.log("created"))
+            .catch(err => console.log(err))
+        }
     }
-  }
-    
-  return (
-    
-    <div>
-      <div className="profile-info">
-        <h2>Hi! User.name</h2>
-        <p>You currently belong to:</p>
-        <ul className="households">
-          {households.map((house) => (
-            <li key={house._id}>
-              <div className="household">
-                <Link to={"/household/" + house._id}>{house.name}</Link>
-              </div>
 
-              <br></br>
-            </li>))}
-        </ul>
-      </div>
+    function deleteHousehold(id) {
+        API.deleteHousehold(id)
+          .then(res => loadHouseholds())
+          .catch(err => console.log(err));
+      }
+ 
+    return(
+        <div className="group">
+        <div className="row">
+        <div className="column">
+        <div className="card">
+            <br></br>
+            <br></br>
+                    <h2>Hi {member} !</h2>
+                    <br></br>
+                    {
+                        households.length ? (
+                            <ul className="text">
+                            <h3 className="text">You currently belong to: </h3>
+                             { households.map(house => 
+                                 <li key={house._id} className="text">
+                                    <div className="household">
+                                        <Link to={'/household/' + house._id}> <button className="btn-1">{house.name}</button></Link>
+                                    </div>
+                                    <button onClick={() => deleteHousehold(house._id)}>Delete</button>
+                                </li>)}
+                        </ul>
+                        ) :
+                        (
+                            <h3>You don't belong to any groups yet</h3>
+                        )
+                    }
+                   
+            </div>
+            </div>
+ 
+        <div className="column">
+        <div className="card">
+            <form>
+                <br></br>
+                <label>Create your own home: </label>
+                <input type="text" 
+                id="hname" 
+                name="name" 
+                placeholder="Household Name" 
+                onChange={handleInputChange}/>
+                <br/>
+                <br></br>
+                <input type="submit" 
+                value="Create" 
+                className="btn" 
+                onClick={handleFormSubmit}/>
+            </form>
+            <br></br>
+        </div>
+        </div>
 
-    
-      <div className="create">
-        <form>
-          <label>Create your own: </label>
-          <input type="text"
-            id="hname"
-            name="name"
-            placeholder="Household Name"
-            onChange={handleInputChange}/>
-          <br />
-          <input type="submit"
-            value="Create"
-            className="btn btn-warning"
-            onClick={handleFormSubmit}/>
-          <br />
-        </form>
-      </div>
-      <br></br>
-
-      <div className="join">
-        <h3>Feeling FOMO?</h3>
-        <form>
-          <label>Join your roommates:</label>
-          <input type="text"
-            id="hname"
-            name="name"
-            placeholder="Household name"
-            onChange={handleInputChange}/>
-          <br />
-          <input type="submit"
-            value="Join"
-            className="btn btn-warning"
-            onClick={handleFormSubmit}/>
-        </form>
-        <br />
-        <hr />
-      </div>
-   
-   <Footer/>
+        <div className="column">
+        <div className="card">
+            <h3>Feeling FOMO?</h3>
+            <form>
+                <label>Join your roommates:</label>
+                <input type="text" 
+                id="household_id" 
+                name="household_id" 
+                placeholder="Household ID"
+                onChange={handleInputChange}/>
+                <br/>
+                <br></br>
+                <input type="submit" 
+                value="Join" 
+                className="btn"
+                onClick={handleFormSubmit}
+                />
+                <br></br>
+            </form>
+        </div>
+        </div>
+        </div>
    </div>
     )
 }
