@@ -10,16 +10,19 @@ const { Provider } = StoreContext;
 const reducer = (state, action) => {
     switch (action.type) {
         case LOGIN:
-            return {
+            const user = {
                 ...state,
                 loggedin: true,
-                user: action._id
-            };
+                user: action.user
+            }
+            localStorage.setItem("user", JSON.stringify(user))
+            return user
         case LOGOUT:
+            localStorage.clear();
             return {
                 ...state,
                 loggedin: false,
-                user: ""
+                user: {}
             };
         default:
             return state;
@@ -28,10 +31,11 @@ const reducer = (state, action) => {
 
 
 const StoreProvider = ({ value = [], ...props }) => {
-    const [state, dispatch] = useReducer(reducer, {
-        loggedin: false,
-        userId: ""
-    });
+    const lastUser = localStorage.getItem("user");
+    const user = (!lastUser) ? 
+        { loggedin:false, user:{} } : JSON.parse(lastUser);
+   
+    const [state, dispatch] = useReducer(reducer, user);
     return <Provider value={[state, dispatch]} {...props} />;
 };
 
@@ -39,4 +43,5 @@ const useStoreContext = () => {
     return useContext(StoreContext);
 };
 
-export { StoreProvider, useStoreContext };
+const StoreConsumer = StoreContext.Consumer
+export { StoreProvider, StoreConsumer, useStoreContext };

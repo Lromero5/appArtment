@@ -18,11 +18,16 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   create: function (req, res) {
-    // console.log(req.body);
-    db.Chores.create(req.body)
-      // .then(({ _id }) => db.Households.findOneAndUpdate({}, { $push: { chores: _id } }, { new: true }))
-      .then((dbModel) => res.json(dbModel))
-      .catch((err) => res.status(422).json(err));
+    
+    const houseID = req.params.id
+    
+    db.Chores
+      .create(req.body)
+      .then(({ _id }) => { 
+      db.Household.findOneAndUpdate({_id:houseID}, { $push: { chores: [_id] } }, { new: true })
+      .then(() => res.json({success:true}))
+      })
+      .catch((err) => res.status(422).json(err))
   },
   update: function (req, res) {
     db.Chores.findOneAndUpdate({ _id: req.params.id }, req.body)

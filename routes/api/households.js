@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const householdController = require("../../controllers/householdController");
-const transactionController = require("../../controllers/transactionsController")
+const transactionController = require("../../controllers/transactionsController");
+const choresController = require("../../controllers/choresController");
 // Matches with "/api/households"
 router.route("/")
   .get(householdController.findAll)
@@ -11,13 +12,23 @@ router
   .route("/:id")
   .get(householdController.findById)
   .put(householdController.update)
-  .delete(householdController.remove);
+  .delete(householdController.remove)
+  .put(householdController.updateMember)
 
 //"api/households/:id/transaction"
-router.route("/:id/transaction")
+router
+.route("/:id/transaction")
 .post(transactionController.create)
 
-router.route("/:id/transaction/:txID")
+router
+.route("/:id/transaction/:txID")
 .delete(transactionController.remove);
+
+//"api/:id/chores"
+router
+.route("/:id/chores")
+.post(choresController.create);
+
+
 
 module.exports = router;
