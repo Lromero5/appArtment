@@ -31,6 +31,7 @@ function Chores(props) {
   // }, [todos]);
 
   function addChore(chore) {
+    console.log('##############last sesh gonna cry')
     API.createChore(chore);
     setChores([chore, ...chores]);
   }

@@ -10,7 +10,7 @@ router.route("/")
 router
   .route("/:id")
   .get(choresController.findById)
-  .put(choresController.update)
+  .put(choresController.create)
   .delete(choresController.remove);
 
 module.exports = router;

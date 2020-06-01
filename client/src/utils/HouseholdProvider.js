@@ -57,23 +57,24 @@ const getTransactions = async(id) => {
     setMembers((members) ? members : [])
     setTransactions((transactions) ? transactions : [])
     // getChores()
+
     //populateassignedTo
-//     const getChores = async(id) =>{
-//     if (chores) {
-//         const populated = chores.map(chore => {
-//             chore.users = chore.users.map(user =>{
-//                 const match = members.filter(({_id})=> user === _id )[0];
-//                 return match
-//             })
-//             return chore
-//         });
-//         setChores(populated)
-//     } else {
-//         setChores([])
-//     }
-// }
-    
+   
+    if (chores) {
+        const populated = chores.map(chore => {
+            chore.users = chore.users.map(user =>{
+                const match = members.filter(({_id})=> user === _id )[0];
+                return match
+            })
+            return chore
+        });
+        setChores(populated)
+    } else {
+        setChores([])
+    }
 }
+    
+
 const addTransaction = async(newTransaction)=>{
     await API.createTransaction(houseID, newTransaction);
    getTransactions()

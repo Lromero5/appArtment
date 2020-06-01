@@ -32,7 +32,7 @@ function ChoresForm({ addChore }) {
         value={chore.task}
         onChange={handleTaskInputChange}
       />
-      <Button type="submit">submit</Button>
+      <Button type="submit">pollo</Button>
     </form>
   );
 }

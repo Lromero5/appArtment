@@ -28,7 +28,7 @@ function Members({context}){
                                     <Button 
                                         onClick={()=> deleteMember(member._id)} 
                                         className="delete-btn">
-                                            x
+                                        X  
                                     </Button>
                                     </li>
                             </div>

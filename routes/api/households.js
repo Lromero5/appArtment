@@ -25,9 +25,9 @@ router
 .delete(transactionController.remove);
 
 //"api/:id/chores"
-router
-.route("/:id/chores")
-.post(choresController.create);
+// router
+// .route("/:id/chores")
+// .post(choresController.create);
 
 
 
