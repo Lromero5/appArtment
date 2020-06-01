@@ -28,10 +28,16 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   update: function(req, res) {
-    db.Household
+    const HouseId = req.params.id
+      db.Household
       .findOneAndUpdate({ _id: req.params.id }, req.body)
-      .then(dbModel => res.json(dbModel))
+      .then(({members}) => {
+        db.User.findOneAndUpdate({_id: members[members.length-1]},
+        {$push: {household_id: HouseId}},{new:true})
+        .then(()=>res.json({sucess:true}))
+  })      
       .catch(err => res.status(422).json(err));
+        
   },
   remove: function(req, res) {
     db.Household

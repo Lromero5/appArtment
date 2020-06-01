@@ -19,6 +19,7 @@ export const AddTransaction = ({context}) => {
 
     newTransaction.isExpense = (name != "amount") ? newTransaction.isExpense : 
                                (+value < 0) ? true : false;
+      console.log(name,value)
 
     setNewTransaction({
       ...newTransaction,
@@ -38,6 +39,9 @@ export const AddTransaction = ({context}) => {
             <Form.Group controlId="exampleForm.SelectCustomSizeSm">
               <Form.Label>User</Form.Label>
               <Form.Control as="select" size="lg" onChange={(e) => handleChange(e.target)} name="user"custom>
+                <option>
+                  select user
+                </option>
                 {members.map((member)=>{
                   return (
                     <option key={member._id} value={member._id} >

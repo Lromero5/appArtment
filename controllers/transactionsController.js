@@ -17,11 +17,9 @@ module.exports = {
   },
   create: function(req, res) {
     const id = req.params.id
-    console.log(id)
     db.Transaction
       .create(req.body)
       .then(({_id}) => {
-        console.log(_id);
         db.Household.findOneAndUpdate({_id:id}, {$push: {transactions: [_id]}},{new:true})
         .then(() => res.json({success: true}))
       })
