@@ -56,19 +56,22 @@ const getTransactions = async(id) => {
     const {transactions, members, chores} = await API.getTransactions(id);
     setMembers((members) ? members : [])
     setTransactions((transactions) ? transactions : [])
+    // getChores()
     //populateassignedTo
-    if (chores) {
-        const populated = chores.map(chore => {
-            chore.users = chore.users.map(user =>{
-                const match = members.filter(({_id})=> user === _id )[0];
-                return match
-            })
-            return chore
-        });
-        setChores(populated)
-    } else {
-        setChores([])
-    }
+//     const getChores = async(id) =>{
+//     if (chores) {
+//         const populated = chores.map(chore => {
+//             chore.users = chore.users.map(user =>{
+//                 const match = members.filter(({_id})=> user === _id )[0];
+//                 return match
+//             })
+//             return chore
+//         });
+//         setChores(populated)
+//     } else {
+//         setChores([])
+//     }
+// }
     
 }
 const addTransaction = async(newTransaction)=>{
@@ -76,6 +79,11 @@ const addTransaction = async(newTransaction)=>{
    getTransactions()
     
 }
+
+// const addChores = async(newChore) => {
+//     await API.createChore(houseID, newChore);
+//     getChores()
+// }
 
 const createHousehold = async(newHousehold) => {
     newHousehold.members = (currentUser) ? [currentUser._id] : [];
@@ -104,6 +112,8 @@ const deleteMember = async(memberId) => {
         setCurrentHousehold,
         getHouseholds,
         deleteMember,
+        // addChores,
+        // getChores,
         chores,
         houseID,
         households,

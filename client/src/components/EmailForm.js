@@ -2,7 +2,10 @@ import React, {Component} from 'react';
 import {Form, FormGroup, Input, Label, Button} from 'reactstrap';
 import axios from 'axios'
 
+
+
 class EmailForm extends Component {
+ 
 
     constructor(){
         super()
@@ -12,6 +15,9 @@ class EmailForm extends Component {
             email: '',
             message: ''
         }
+
+        
+        
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -41,6 +47,7 @@ class EmailForm extends Component {
    
 
     render () {
+      
         return(
             <Form onSubmit={this.handleFormSubmit} className="form">
             <FormGroup>

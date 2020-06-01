@@ -16,7 +16,7 @@ function Account(){
                     <CardColumns>
                         <Members context={context}/>
                         <Finance context={context}/>
-                        {/* <Chores/> */}
+                        <Chores context={context}/>
                     </CardColumns>
                 )
             }}

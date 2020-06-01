@@ -47,8 +47,8 @@ export default {
     return axios.delete("/api/chores/" + id);
   },
 
-  createChore: function (householdData) {
-    return axios.post("/api/chores", householdData);
+  createChore: function (id, choreData) {
+    return axios.post(`/api/households/${id}/chores`, choreData);
   },
 
   updateChore: function (id, completed) {

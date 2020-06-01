@@ -49,7 +49,7 @@ module.exports = {
 
   updateMember: function(req, res){
     db.Household
-        .findByIdAndUpdate({_id: req.params.id}, {$pull: req.body} ,{new: true, useFindAndModify: false})
+        .findByIdAndUpdate({_id: req.params.id}, {$pull: {members: req.body}} ,{new: true, useFindAndModify: false})
         .then(dbModel => {
           return res.json(dbModel);
         })

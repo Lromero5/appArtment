@@ -9,6 +9,7 @@ function Members({context}){
     
     const {members, deleteMember, setCurrentHousehold} = context;
   
+
   
     return (
         <>
@@ -40,7 +41,7 @@ function Members({context}){
         <Card>
             <Card.Header>Want to add a roomate?</Card.Header>
             <Card.Body>
-                <EmailForm/>
+                <EmailForm context={context}/>
             </Card.Body>
         </Card>
         </>
@@ -51,6 +52,3 @@ export default Members;
 
 
 
-// <h3>Want to add more roommates?</h3>
-// <EmailForm/>
-// </div>
