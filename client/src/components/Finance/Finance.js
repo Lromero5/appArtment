@@ -4,29 +4,30 @@ import {Balance} from "../Finance/balance"
 import {IncomeExpenses} from "../Finance/incomeExpenses"
 import {TransactionList} from "../Finance/transactionList"
 import {AddTransaction} from "../Finance/addTransaction"
-import {GlobalConsumer} from "./context/globalState"
+import Card from "react-bootstrap/Card"
+import CardDeck from "react-bootstrap/CardDeck"
 
 import './Finance.css';
 
-function Finance({houseID}) {
+function Finance({context}) {
   return  (
-    
-    <GlobalConsumer>
-      {(context) => {
-        return(
         <>
-        <Header/>   
-        <div className="containerFinance">
+        <CardDeck>
+        <Card>
+          <Card.Body>
+          <Card.Header>Household Expenses</Card.Header>
         <Balance context={context}/>  
         <IncomeExpenses context={context}/>
-        <TransactionList 
-          context={context}
+        <TransactionList context={context}
           />
+          </Card.Body>
+          </Card>
+
         <AddTransaction context={context} />
-        </div>  
+        </CardDeck> 
+        
+        
         </>
-      )}}
-    </GlobalConsumer>
     
   );
 }

@@ -20,7 +20,7 @@ module.exports = {
   create: function (req, res) {
     // console.log(req.body);
     db.Chores.create(req.body)
-      // .then(({ _id }) => db.Households.findOneAndUpdate({}, { $push: { chores: _id } }, { new: true }))
+      .then(({ _id }) => db.Households.findOneAndUpdate({}, { $push: { chores: _id } }, { new: true }))
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },

@@ -6,7 +6,7 @@ module.exports = {
   findAll: function(req, res) {
     db.Household
       .find(req.query)
-      // .populate("transactions")
+      .populate("transactions")
       .populate("members")
       .populate("chores")
       .sort({ date: -1 })
@@ -16,7 +16,7 @@ module.exports = {
   findById: function(req, res) {
     db.Household
       .findById(req.params.id)
-      // .populate("transactions")
+      .populate("transactions")
       .populate("members")
       .populate("chores")
       .then(houseData => res.json(houseData))
@@ -29,13 +29,14 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
 
-  update: function(req, res) {
+  update: function({params, body}, res) {
+      console.log(`updating household id:${params.id} user_id:${body._id}` )
       db.Household
-        .findByIdAndUpdate({_id: req.params.id}, {$push: req.body}, {new: true, useFindAndModify: false})
+        .findOneAndUpdate({_id:params.id}, {$push: { members: body._id }}, {new: true, useFindAndModify: false})
         .then(dbModel => {
           return res.json(dbModel);
         })
-        .catch(console.log);
+        .catch(err => {console.log(err);res.status(422).json(err)});
     },
     
   remove: function(req, res) {

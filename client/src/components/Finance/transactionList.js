@@ -9,14 +9,19 @@ export const TransactionList = ({context}) => {
         <>
             <h3>History</h3>
       <ul className="list">
-        {transactions.map(transaction =>(
-          <Transaction 
-            key={transaction._id} 
-            transaction={transaction}
-            deleteTransaction={deleteTransaction}
-          >
-          </Transaction>)
-        )}
+        {
+          !transactions.length ?
+          (<h3>No Transactions Recorded</h3>) :
+          (
+            transactions.map(transaction =>(
+              <Transaction 
+                key={transaction._id} 
+                transaction={transaction}
+                deleteTransaction={deleteTransaction}
+              >
+              </Transaction>))
+          )
+        }
          
       </ul>
             

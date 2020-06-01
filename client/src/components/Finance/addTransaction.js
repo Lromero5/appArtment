@@ -5,7 +5,7 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 
 export const AddTransaction = ({context}) => {
-  const {addTransaction,members} = context
+  const {addTransaction, members} = context
   
   
   const [newTransaction, setNewTransaction] = useState({
@@ -38,13 +38,20 @@ export const AddTransaction = ({context}) => {
             <Form.Group controlId="exampleForm.SelectCustomSizeSm">
               <Form.Label>User</Form.Label>
               <Form.Control as="select" size="lg" onChange={(e) => handleChange(e.target)} name="user"custom>
-                {members.map((member)=>{
-                  return (
-                    <option key={member._id} value={member._id} >
-                      {member.displayName}
-                    </option>
+                <option>Select User</option>
+                { 
+                  !members.length ?
+                  (<h3>No Members Recorded</h3>) :
+                  (
+                    members.map((member)=>{
+                      return (
+                        <option key={member._id} value={member._id} >
+                          {member.displayName}
+                        </option>
+                      )
+                    })
                   )
-                })}
+                }
               </Form.Control>
             </Form.Group>
             <Form.Group>
