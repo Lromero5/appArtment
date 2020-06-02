@@ -1,12 +1,12 @@
 import React, {createContext, useState, useEffect} from "react";
 import API from "../../../utils/API";
 
-//create context
+
 export const GlobalContext = createContext({
 
 })
 
-// provider component
+
 export const GlobalProvider = ({ houseID, children }) => {
     const [transactions, setTransactions] = useState([])
     const [members, setMembers] = useState([])
@@ -16,7 +16,7 @@ useEffect(() => {
     getTransactions();
 },[houseID])
 
-//actions
+
 const deleteTransaction= async(transaction)=>{
     console.log(transaction);
     await API.deleteTransaction(houseID, transaction);
@@ -36,10 +36,7 @@ const addTransaction = async(newTransaction)=>{
     
 }
 
-// const setHousehold = async(house_id) => {
-//     setHouse_id(house_id);
-//     getTransactions(house_id)
-// }
+
 
     return(
     <GlobalContext.Provider value={{

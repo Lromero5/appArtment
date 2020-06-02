@@ -21,7 +21,6 @@ export function JoinHousehold({context}){
 
     const onSubmit = () => {
         addUserToHousehold(newHousehold._id);
-        // setValidated(true);
     }
 
     return (

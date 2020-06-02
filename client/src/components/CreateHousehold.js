@@ -4,7 +4,7 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 
 export const CreateHousehold = ({context}) => {
-  const {currentUser, createHousehold} = context
+  const { createHousehold} = context
   
   const [newHousehold, setnewHousehold] = useState({
     name:"",

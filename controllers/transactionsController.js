@@ -1,6 +1,6 @@
 const db = require("../models");
 
-// Defining methods for the choresController
+
 module.exports = {
   findAll: function(req, res) {
     db.Transaction
@@ -34,10 +34,9 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   remove: function({params}, res) {
-    // console.log(`Delete ${body.name} (${body._id})`)
+    
     db.Transaction
-      // .findById(req.body._id)
-      // .then(dbModel => dbModel.remove())
+    
       .deleteOne({_id: params.txID})
       .then(dbModel => res.json(dbModel))
       .catch(err => {

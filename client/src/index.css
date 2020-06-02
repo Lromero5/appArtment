@@ -174,13 +174,12 @@ a:hover {
 }
 
 .details {
-  /* display: flex; */
+  
   justify-content: align-center;
   align-items: flex-start;
   width: fit-content;
   padding-left: 40px;
-  /* border: black;
-  border-radius: 0.5 rem; */
+
 }
 
 .details-info {
@@ -272,9 +271,7 @@ a:hover {
   cursor: pointer;
 }
 
-/* .form{
-  position: relative
-} */
+
 
 .data{
   font-weight: 900;

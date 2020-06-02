@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { GlobalConsumer } from './context/globalState';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';

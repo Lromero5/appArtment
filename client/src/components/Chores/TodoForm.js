@@ -1,10 +1,8 @@
 import { Button, TextField } from "@material-ui/core";
 import React, { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
 
 function ChoresForm({ addChore }) {
   const [chore, setChore] = useState({
-    // _id: "",
     task: "",
     completed: false,
   });
@@ -17,8 +15,6 @@ function ChoresForm({ addChore }) {
     e.preventDefault();
     if (chore.task.trim()) {
       addChore(chore);
-      console.log(chore);
-      // reset task input
       setChore(chore);
     }
   }

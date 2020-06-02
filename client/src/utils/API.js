@@ -1,15 +1,15 @@
 import axios from "axios";
 
 export default {
-  //Get all households
+
   getHouseholds: function(){
     return axios.get("/api/households")
 },
-    //Get a household with the given id
+
     getHousehold: function(id){
         return axios.get("/api/households/" + id)
     },
-    //Deletes the household with the given id
+    
     deleteHousehold: function(id){
         return axios.delete("/api/households/" + id)
     },
@@ -35,14 +35,14 @@ export default {
         return axios.delete("/api/users/" + userId)
     },
 
-  // Get a chore with the given household_id
+
   getChores: function (household_id) {
-    // console.log(household_id);
+
     return axios.get("/api/chores");
 
-    // return axios.get("/api/chores/" + household_id);
+
   },
-  //   //Deletes the chore with the given household_id
+  
   deleteChore: function (id) {
     return axios.delete("/api/chores/" + id);
   },
@@ -66,11 +66,10 @@ export default {
   },
 
   deleteTransaction: function(id, {name, _id}){
-    console.log(`Delete ${name} (${_id})`)
       return axios.delete(`/api/households/${id}/transaction/${_id}`)
   },
 
-//newcode 
+ 
 login: function (userData) {
     return axios.post("api/users/login", userData);
 },

@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const db = require("../models");
 
-// This file empties the Books collection and inserts the books below
 
 mongoose.connect(
   process.env.MONGODB_URI ||
@@ -49,8 +48,6 @@ const userSeed = [
       db.Household
       .create(householdSeed)
       .then(({_id}) => {
-        //update users withid of created household
-        console.log(_id);
         let newSeed = userSeed.map(user => {
           user.household_id = _id
           return user
@@ -61,7 +58,6 @@ const userSeed = [
             console.log(newUser)
             db.Household.findOneAndUpdate({_id: newUser.household_id}, { $push: { members: newUser._id } }, { new: true })
           })
-          // process.exit(0);
         } )
       })
     }).catch(err => {
@@ -71,14 +67,3 @@ const userSeed = [
   });
   
 
-// db.User
-//   .remove({})
-//   .then(() => db.User.collection.insertMany(userSeed))
-//   .then(data => {
-//     console.log(data.result.n + " records inserted!");
-//     process.exit(0);
-//   })
-//   .catch(err => {
-//     console.error(err);
-//     process.exit(1);
-//   });

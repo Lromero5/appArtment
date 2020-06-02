@@ -1,17 +1,15 @@
 import React from 'react';
-import { Route, Redirect, useLocation } from 'react-router-dom';
+import { Route, Redirect} from 'react-router-dom';
 import { useStoreContext } from "../utils/GlobalState";
 import SignUp from '../pages/SignUp';
 import Login from '../pages/Login';
 import Account from '../pages/Account';
 import HomeScreen from '../pages/HomeScreen';
-import {LOGOUT } from "../utils/actions";
 import Main from '../pages/Main'
 
 export const AuthRouteWrapper = ()=>{
     const [state, dispatch] = useStoreContext();
 
-    const { pathname } = useLocation();
 
     return (
         <div className="grid-container"> 

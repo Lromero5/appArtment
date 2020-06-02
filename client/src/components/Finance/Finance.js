@@ -1,5 +1,4 @@
 import React from 'react';
-import {Header} from "../Finance/Header"
 import {Balance} from "../Finance/balance"
 import {IncomeExpenses} from "../Finance/incomeExpenses"
 import {TransactionList} from "../Finance/transactionList"

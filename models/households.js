@@ -12,7 +12,7 @@ const householdSchema = new Schema({
   chores: [{
     type:mongoose.Schema.ObjectId, ref:"Chores"
   }], 
-  //this is good
+  
   transactions: [{
     type:mongoose.Schema.ObjectId, ref:"Transaction"
 
@@ -20,11 +20,7 @@ const householdSchema = new Schema({
    
   
 });
-// householdSchema.methods.addTransaction=function({newTran}) {
-//   this.transactions.push({newTran})
-//   return this.transactions;
-  
-// }
+
 
 const Household = mongoose.model("Household", householdSchema);
 
