@@ -8,6 +8,8 @@ import { HouseholdConsumer } from "../utils/HouseholdProvider";
 import Members from "../components/Members";
 import CardColumns from 'react-bootstrap/CardColumns'
 
+import "../../src/App.css"
+
 function Account(){
     return(
         <HouseholdConsumer>

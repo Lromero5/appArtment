@@ -5,6 +5,10 @@ import EmailForm from './EmailForm';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
+
+
+
+
 function Members({context}){
     
     const {members, deleteMember, setCurrentHousehold} = context;
@@ -27,8 +31,8 @@ function Members({context}){
             
                                     <Button 
                                         onClick={()=> deleteMember(member._id)} 
-                                        className="delete-btn">
-                                            x
+                                        >
+                                            Delete Member
                                     </Button>
                                     </li>
                             </div>
