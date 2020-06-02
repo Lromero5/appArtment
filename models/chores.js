@@ -2,15 +2,21 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const choresSchema = new Schema({
+ 
+  users: [{
+    type: mongoose.Schema.ObjectId, ref: "User"
+  }],
   task: {
     type: String,
     required: true,
   },
   completed: {
     type: Boolean,
+    default: false
   },
+  
 });
 
-const Chore = mongoose.model("Chore", choresSchema);
+const Chores = mongoose.model("Chores", choresSchema);
 
-module.exports = Chore;
+module.exports = Chores;

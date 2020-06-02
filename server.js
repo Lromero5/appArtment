@@ -21,12 +21,19 @@ app.use(cors());
 
 
 // Serve up static assets (usually on heroku)
-if (process.env.NODE_ENV === "production") {
+//if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
-}
+//}
 
 // Add routes, both API and view
 app.use(routes);
+
+var path = require('path')
+// app.get('*', function(req, res){
+//   console.log('WE R IN THE CATCH ALL ROUTE~!!!')
+//   res.sendFile(path.join(__dirname, "client/build/index.html"));
+// })
+
 
 //new code
 // Error handling
@@ -46,5 +53,5 @@ mongoose.connect(process.env.MONGODB_URI ||  "mongodb://user:appartment3@ds25353
 
 // Start the API server
 app.listen(PORT, function() {
-  console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
+  console.log(`🌎  ==> API Server now listening on PORT ${PORT}   `);
 });

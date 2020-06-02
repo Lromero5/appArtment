@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { useStoreContext } from "../utils/GlobalState";
 import { LOGIN } from "../utils/actions";
 import API from "../utils/API";
@@ -14,26 +14,36 @@ function Signup() {
         setUser({...user, [event.target.name] : event.target.value})
     }
 
-    const history = useHistory();
     const handleClick = (e) => {
         e.preventDefault();
         API.signup(user)
-            .then(function(data) {
-                const userId = data.data._id;
-                history.push("/myhomescreen/" + userId);
+            .then(function({data}) {
+             
+                const {_id, displayName, household_id, email, username} = data
+                const user = {
+                    _id,
+                    displayName,
+                    household_id,
+                    email,
+                    username
+                }
                 dispatch({
                     type: LOGIN,
-                    _id: data.data._id
+                    user: user
                 })
-                console.log("Just signed up and this is our users id", userId);
+                console.log("Just signed up and this is our users id", user._id);
             })
     }
 
     return (
-
+        (state.loggedin) ? <Redirect to="/myHomescreen"/> :
         <div className="container my-5 bg-light p-5">
             <h2 className="text-center">SignUp</h2>
             <form className="mt-4 col-6">
+                <div className="form-group">
+                    <label>Display Name</label>
+                    <input name="displayName" onChange={onChange} type="username" className="form-control" placeholder="Enter display name" />
+                </div>
                 <div className="form-group">
                     <label>Username </label>
                     <input name="username" onChange={onChange} type="username" className="form-control" placeholder="Enter username" />

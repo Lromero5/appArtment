@@ -8,6 +8,18 @@ html,
   height: 40vmin;
   pointer-events: none;
 }
+input[type='password']{
+  border: 1px solid #dedede;
+  border-radius: 2px;
+  display: block;
+  font-size: 16px;
+  padding: 10px;
+  width: 100%;
+}
+
+.custom-select{
+  height: 100%;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -34,6 +46,9 @@ html,
   text-align: center;
 }
 
+
+
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -42,3 +57,4 @@ html,
     transform: rotate(360deg);
   }
 }
+

@@ -2,19 +2,19 @@ import { List } from "@material-ui/core";
 import React from "react";
 import Todo from "./Todo";
 
-function TodoList({ todos, toggleComplete, removeTodo }) {
+function ChoresList({ chores, toggleComplete, removeChore }) {
   return (
     <List>
-      {todos.map((todo) => (
+      {chores.map((chore) => (
         <Todo
-          key={todo._id}
-          todo={todo}
+          key={chore._id}
+          chore={chore}
           toggleComplete={toggleComplete}
-          removeTodo={removeTodo}
+          removeChore={removeChore}
         />
       ))}
     </List>
   );
 }
 
-export default TodoList;
+export default ChoresList;
