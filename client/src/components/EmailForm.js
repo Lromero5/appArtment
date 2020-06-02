@@ -3,9 +3,7 @@ import {Form, FormGroup, Input, Label, Button} from 'reactstrap';
 import axios from 'axios'
 
 
-
 class EmailForm extends Component {
- 
 
     constructor(){
         super()
@@ -79,7 +77,6 @@ class EmailForm extends Component {
                 onChange={this.handleInputChange}
             />               
             </FormGroup>
-    
             <Button className="button">Submit</Button>
             </Form>
         )
