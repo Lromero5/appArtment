@@ -50,7 +50,25 @@ input[type='password']{
   text-align: center;
 }
 
+/* main landing page button css */
+.button {
+  display: block;
+  width: 150px;
+  max-width: 100%;
+  margin: 0 auto;
+  margin-bottom: 0;
+  overflow: hidden;
+  position: relative;
+  font-size: 20px;
+}
 
+.instagram {
+  text-align: center;
+  border-radius: 50px;
+  padding: 20px;
+  color: white;
+  background: rgb(233, 133, 133);
+}
 
 
 @keyframes App-logo-spin {

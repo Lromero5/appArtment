@@ -7,7 +7,7 @@ export const Balance = ({context}) => {
 
     return (
         <>
-        <h4>Household Finances</h4>
+        <h4>Total</h4>
         <h1>{total}</h1>
             
         </>

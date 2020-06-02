@@ -14,7 +14,7 @@ function Members({context}){
     return (
         <>
         <Card>
-            <Card.Header>Your Households</Card.Header>
+            <Card.Header>Household Members</Card.Header>
             <Card.Body>
                 {
                     !members.length ? 
