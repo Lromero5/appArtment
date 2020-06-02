@@ -21,24 +21,14 @@ export function JoinHousehold({context}){
 
     return (
         <Card>
-            <Card.Header>Feeling FOMO?</Card.Header>
+            <Card.Header>Join A Houshold!</Card.Header>
             <Card.Body>
             <Form>
             <Form.Group>
-                <Form.Label>Join a Household</Form.Label>
-                <Form.Control as="select" size="lg" onChange={(e) => handleChange(e.target)} name="_id" custom>
-                    <option>
-                        select
-                    </option>
-                {
-                    households.map((household)=>{
-                    return (
-                        <option key={household._id} value={household._id} >
-                        {household.name}
-                        </option>
-                    )
-                    })
-                }
+                <Form.Label>Enter House ID Found In Invite email</Form.Label>
+                <hr></hr>
+                <Form.Control as="input" size="lg" onChange={(e) => handleChange(e.target)} name="_id" custom>
+                   
               </Form.Control>
             </Form.Group>
             <Button variant="primary" onClick={onSubmit}>

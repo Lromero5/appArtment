@@ -6,13 +6,17 @@ import API from '../utils/API';
 import CardDeck from 'react-bootstrap/CardDeck';
 import { HouseholdConsumer } from "../utils/HouseholdProvider";
 import Members from "../components/Members";
-import CardColumns from 'react-bootstrap/CardColumns'
+import CardColumns from 'react-bootstrap/CardColumns';
+
 
 function Account(){
     return(
+        
         <HouseholdConsumer>
+            
                {(context) => {
                 return(
+                    
                     <CardColumns>
                         <Members context={context}/>
                         <Finance context={context}/>
