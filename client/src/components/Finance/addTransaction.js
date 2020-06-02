@@ -35,7 +35,7 @@ export const AddTransaction = ({context}) => {
           <Card.Header>Add a New Transaction</Card.Header>
           <Card.Body>
             <Form>
-            <Form.Group controlId="exampleForm.SelectCustomSizeSm">
+            <Form.Group>
               <Form.Label>User</Form.Label>
               <Form.Control as="select" size="lg" onChange={(e) => handleChange(e.target)} name="user"custom>
                 <option>Select User</option>

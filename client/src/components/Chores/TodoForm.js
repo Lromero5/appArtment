@@ -1,39 +1,66 @@
-import { Button, TextField } from "@material-ui/core";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 import React, { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
+import MultiSelect from "@khanacademy/react-multi-select";
 
-function ChoresForm({ addChore }) {
-  const [chore, setChore] = useState({
-    // _id: "",
+function ChoresForm({context}) {
+  const {addChore, members} = context
+  const blankForm = {
     task: "",
     completed: false,
-  });
+    users:[]
+  };
 
-  function handleTaskInputChange(e) {
-    setChore({ ...chore, task: e.target.value });
+  const [chore, setChore] = useState(blankForm);
+
+  function handleChange({name, value}) {
+    setChore({ ...chore, [name]: value });
   }
 
-  function handleSubmit(e) {
-    e.preventDefault();
+  function handleSubmit() {
     if (chore.task.trim()) {
       addChore(chore);
-      console.log(chore);
+      //console.log(chore);
       // reset task input
-      setChore(chore);
+      setChore(blankForm);
     }
   }
 
+  function handleAddMember(e){
+    console.log(e);
+  }
+
+  function getUserList() {
+    if (!members) {
+      console.log("no members");
+      return [];
+    }
+    
+    const mList = members.map(member =>{
+            return {label: member.displayName, value: member._id}
+          })
+    console.log(mList);
+    return mList
+  }
+
   return (
-    <form className="todo-form" onSubmit={handleSubmit}>
-      <TextField
-        label="Task"
-        name="task"
-        type="text"
-        value={chore.task}
-        onChange={handleTaskInputChange}
-      />
-      <Button type="submit">pollo</Button>
-    </form>
+    <Form>
+      <Form.Group>
+        <Form.Label>Task</Form.Label>
+        <Form.Control name="task" type="text" 
+          onChange={(e) => handleChange(e.target)} />
+      </Form.Group>
+      <Form.Group>
+        <Form.Label>Assign to member</Form.Label>
+        <MultiSelect
+          options={getUserList()}
+          onChange={handleAddMember}
+          selected={chore.users}
+          onSelectedChanged={users => setChore({ ...chore, users})}
+        />
+      </Form.Group>
+      <Button onClick={handleSubmit} >Submit</Button>
+    </Form>
   );
 }
 

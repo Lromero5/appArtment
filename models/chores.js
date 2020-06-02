@@ -10,7 +10,7 @@ const choresSchema = new Schema({
     type: String,
     required: true,
   },
-  completed: {
+  isCompleted: {
     type: Boolean,
     default: false
   },

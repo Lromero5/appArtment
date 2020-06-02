@@ -39,6 +39,7 @@ const getHouseholds = async() => {
     }
 }
 
+// await getChores(id)
 const setCurrentHousehold = async(id) => {
     setHouseID(id);
     await getTransactions(id);
@@ -48,17 +49,15 @@ const deleteTransaction= async(transaction)=>{
     console.log(transaction);
     await API.deleteTransaction(houseID, transaction);
     getTransactions();
-
 }
+
+
 
 const getTransactions = async(id) => {
     id = (!id) ? houseID : id
     const {transactions, members, chores} = await API.getTransactions(id);
     setMembers((members) ? members : [])
     setTransactions((transactions) ? transactions : [])
-    // getChores()
-
-    //populateassignedTo
    
     if (chores) {
         const populated = chores.map(chore => {
@@ -81,10 +80,16 @@ const addTransaction = async(newTransaction)=>{
     
 }
 
-// const addChores = async(newChore) => {
-//     await API.createChore(houseID, newChore);
-//     getChores()
+const addChore = async(newChore) => {
+    console.log(`Adding chore ${newChore.task} to ${houseID}`)
+    await API.createChore(houseID, newChore);
+    getTransactions()
+}
+
+// const removeChore = async(choreID) => {
+//     await API.removeChore
 // }
+
 
 const createHousehold = async(newHousehold) => {
     newHousehold.members = (currentUser) ? [currentUser._id] : [];
@@ -106,6 +111,7 @@ const deleteMember = async(memberId) => {
     <HouseholdContext.Provider value={{
         transactions, 
         deleteTransaction,
+        addChore,
         addTransaction,
         addUserToHousehold,
         createHousehold,
@@ -113,8 +119,6 @@ const deleteMember = async(memberId) => {
         setCurrentHousehold,
         getHouseholds,
         deleteMember,
-        // addChores,
-        // getChores,
         chores,
         houseID,
         households,

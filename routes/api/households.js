@@ -24,10 +24,13 @@ router
 .route("/:id/transaction/:txID")
 .delete(transactionController.remove);
 
-//"api/:id/chores"
+//"api/households/:id/chores"
+router
+.route("/:id/chores")
+.post(choresController.create);
+
 // router
-// .route("/:id/chores")
-// .post(choresController.create);
+// .route()
 
 
 

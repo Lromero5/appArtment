@@ -48,8 +48,7 @@ export default {
   },
 
   createChore: function (id, choreData) {
-      console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-    return axios.put(`/api/chores/${id}`, choreData);
+    return axios.post(`/api/households/${id}/`, choreData);
   },
 
   updateChore: function (id, completed) {
