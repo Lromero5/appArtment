@@ -16,7 +16,7 @@ class Cards extends Component{
                        <Card imgsrc={img1} title="List chores" text="Have the ability list chores that need to be completed."/>
                    </div>
                    <div className="col-md-4">
-                   <Card imgsrc={img2} title="Manage finances" text= "Manage finances by keeping track of all bills that are due."/>
+                   <Card imgsrc={img3} title="Manage finances" text= "Manage finances by keeping track of all bills that are due."/>
                    </div>
                    <div className="col-md-4">
                    <Card imgsrc={img2} title="Live happily" text= "Best of all, enjoy living together!"/>
