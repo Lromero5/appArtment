@@ -11,22 +11,13 @@ function Chores() {
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
-    // const storageTodos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
     API.getChores("5ecc800d2c0155578876c0bc")
       .then((res) => {
         console.log(res.data);
         setTodos(res.data);
       })
       .catch((err) => console.log(err));
-
-    // if (storageTodos) {
-    //   setTodos(storageTodos);
-    // }
   }, []);
-
-  // useEffect(() => {
-  //   localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todos));
-  // }, [todos]);
 
   function addTodo(todo) {
     API.createChore(todo);

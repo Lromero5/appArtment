@@ -1,7 +1,6 @@
 import axios from "axios";
 
 export default {
-<<<<<<< HEAD
   //Get all households
   getHouseholds: function () {
     return axios.get("/api/households");
@@ -22,7 +21,6 @@ export default {
   getChores: function (household_id) {
     console.log(household_id);
     return axios.get("/api/chores");
-
     // return axios.get("/api/chores/" + household_id);
   },
   //   //Deletes the chore with the given household_id
@@ -37,36 +35,20 @@ export default {
   updateChore: function (id, completed) {
     return axios.put("/api/chores/" + id, completed);
   },
-};
-=======
-    //Get all households
-    getHouseholds: function(){
-        return axios.get("/api/households")
-    },
-    //Get a household with the given id
-    getHousehold: function(id){
-        return axios.get("/api/households/" + id)
-    },
-    //Deletes the household with the given id
-    deleteHousehold: function(id){
-        return axios.delete("/api/households/" + id)
-    },
-    createHousehold: function(householdData){
-        return axios.post("/api/households", householdData)
-    },
-//newcode 
-login: function (userData) {
-    return axios.post("api/users/login", userData);
-},
-signup: function (userData) {
-    return axios.post("api/users/signup", userData);
-},
-isAuth: function (_id) {
-    return axios.get("api/users/" + _id);
-},
-logout: function () {
-    return axios.get("api/users/logout");
-},
 
+  //newcode
+
+  login: function (userData) {
+    return axios.post("api/users/login", userData);
+  },
+
+  signup: function (userData) {
+    return axios.post("api/users/signup", userData);
+  },
+  isAuth: function (_id) {
+    return axios.get("api/users/" + _id);
+  },
+  logout: function () {
+    return axios.get("api/users/logout");
+  },
 };
->>>>>>> f50f5cd1f4686958b1198a421dec5fdf6b60ba07
