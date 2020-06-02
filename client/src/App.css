@@ -4,9 +4,6 @@ html,
   height: 100%;
 }
 
-/* .MuiTypography-h1 {
-  font-size: 4rem; 
- } */
 
 .App-logo {
   height: 40vmin;
@@ -50,7 +47,7 @@ input[type='password']{
   text-align: center;
 }
 
-/* main landing page button css */
+
 .button {
   display: block;
   width: 150px;

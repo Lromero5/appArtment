@@ -30,7 +30,6 @@ function Login() {
                 type: LOGIN,
                 user: user
             })
-            console.log("just logged in and this is our user id", _id)
         })
 
     }

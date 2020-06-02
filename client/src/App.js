@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route, useParams} from 'react-router-dom';
+import { BrowserRouter as Router} from 'react-router-dom';
 
 import NavbarApp from './components/AppNavbar';
 import { AuthRouteWrapper } from './components/AuthRouteWrapper';

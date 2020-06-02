@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import API from '../utils/API';
-import { useParams } from 'react-router-dom';
+import React from 'react';
 import EmailForm from './EmailForm';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';

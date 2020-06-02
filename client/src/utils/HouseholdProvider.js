@@ -2,10 +2,10 @@ import React, {createContext, useState, useEffect} from "react";
 import API from "./API";
 import { useStoreContext } from "./GlobalState";
 
-//create context
+
 export const HouseholdContext = createContext({})
 
-// provider component
+
 export const HouseholdProvider = ({children }) => {
     const [households, setHouseholds] = useState([])
     const [myHouseholds, setMyHouseholds] = useState([])
@@ -21,7 +21,7 @@ useEffect(() => {
     getHouseholds();
 },[state.user])
 
-//actions
+
 const getHouseholds = async() => {
     const {data} = await API.getHouseholds();
     setHouseholds(data);
@@ -45,7 +45,6 @@ const setCurrentHousehold = async(id) => {
 }
 
 const deleteTransaction= async(transaction)=>{
-    console.log(transaction);
     await API.deleteTransaction(houseID, transaction);
     getTransactions();
 
@@ -56,22 +55,7 @@ const getTransactions = async(id) => {
     const {transactions, members, chores} = await API.getTransactions(id);
     setMembers((members) ? members : [])
     setTransactions((transactions) ? transactions : [])
-    // getChores()
-    //populateassignedTo
-//     const getChores = async(id) =>{
-//     if (chores) {
-//         const populated = chores.map(chore => {
-//             chore.users = chore.users.map(user =>{
-//                 const match = members.filter(({_id})=> user === _id )[0];
-//                 return match
-//             })
-//             return chore
-//         });
-//         setChores(populated)
-//     } else {
-//         setChores([])
-//     }
-// }
+
     
 }
 const addTransaction = async(newTransaction)=>{
@@ -80,10 +64,7 @@ const addTransaction = async(newTransaction)=>{
     
 }
 
-// const addChores = async(newChore) => {
-//     await API.createChore(houseID, newChore);
-//     getChores()
-// }
+
 
 const createHousehold = async(newHousehold) => {
     newHousehold.members = (currentUser) ? [currentUser._id] : [];
@@ -112,8 +93,6 @@ const deleteMember = async(memberId) => {
         setCurrentHousehold,
         getHouseholds,
         deleteMember,
-        // addChores,
-        // getChores,
         chores,
         houseID,
         households,

@@ -6,16 +6,16 @@ const nodemailer = require("nodemailer")
 const dotenv = require("dotenv").config()
 
 
-// Chores routes
+
 router.use("/chores", choresRoutes);
 
-// Household routes
+
 router.use("/households",householdRoutes);
 
-//User routes
+
 router.use("/users",userRoutes);
 
-//Email routes
+
 router.post("/form", (req, res) => {
     nodemailer.createTestAccount((err, account) => {
         const htmlEmail = `

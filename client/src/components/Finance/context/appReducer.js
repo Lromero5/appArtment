@@ -10,11 +10,7 @@ export default (state, action) => {
                 ...state,
                 transactions: [action.payload,...state.transactions]
             }
-        // case "GET_TRANSACTION":
-        //     return {
-        //         ...state,
-        //         transactions:
-        //     }
+   
         default: return state;
     }
 }

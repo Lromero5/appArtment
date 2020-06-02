@@ -1,6 +1,6 @@
 const db = require("../models");
 
-// Defining methods for the choresController
+
 module.exports = {
   findAll: function (req, res) {
     db.Chores.find(req.query)

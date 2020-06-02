@@ -1,6 +1,6 @@
-import React, { useState, useEffect }  from "react";
+import React  from "react";
 import Card from 'react-bootstrap/Card';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 export function HouseholdList({context}){
     const {myHouseholds, removeHouseHold, setCurrentHousehold} = context;
