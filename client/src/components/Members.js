@@ -7,7 +7,7 @@ import Card from 'react-bootstrap/Card';
 
 function Members({context}){
     
-    const {members, deleteMember, setCurrentHousehold} = context;
+    const {members, deleteMember,houseID } = context;
   
 
   
@@ -16,7 +16,8 @@ function Members({context}){
         <Card>
             <Card.Header>Household Members</Card.Header>
             <Card.Body>
-                {
+                {<h2>Your Household ID is: {houseID} </h2>}
+                {                    
                     !members.length ? 
                     ( <h3>You don't belong to any households yet</h3> ) :
                     (
