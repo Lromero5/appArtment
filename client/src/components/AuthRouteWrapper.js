@@ -6,6 +6,7 @@ import Login from '../pages/Login';
 import Account from '../pages/Account';
 import HomeScreen from '../pages/HomeScreen';
 import {LOGOUT } from "../utils/actions";
+import Main from '../pages/Main'
 
 export const AuthRouteWrapper = ()=>{
     const [state, dispatch] = useStoreContext();
@@ -14,11 +15,12 @@ export const AuthRouteWrapper = ()=>{
 
     return (
         <div className="grid-container"> 
+            <Route path='/' exact> <Main/> </Route>
             <Route path='/login' exact> <Login/> </Route>
             <Route path='/signup' exact> <SignUp/> </Route>
             <Route path="/myhomescreen" exact>
                 {
-                    state.loggedin ? <HomeScreen/> : <Redirect to="/login"/>
+                    state.loggedin ? <HomeScreen/> : <Redirect to="/"/>
                 }
             </Route> 
             <Route path="/household" exact>
