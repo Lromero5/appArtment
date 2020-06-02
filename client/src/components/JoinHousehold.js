@@ -2,14 +2,18 @@ import React, {useState} from "react";
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { Link } from 'react-router-dom';
 
 export function JoinHousehold({context}){
-    const {currentUser, addUserToHousehold, households} = context
+    const {addUserToHousehold, households} = context;
+
+    const [isValid, setIsValid] = useState(false);
 
     const [newHousehold, setnewHousehold] = useState({});
 
-    const handleChange = ({name, value}) => {
+    const handleChange = (target) => {
+        const {name, value} = target;
+        const match = households.filter(({name, _id}) => (value === name || value === _id))
+        setIsValid(match.length>0)
         setnewHousehold({
             [name]: value
         });
@@ -17,21 +21,23 @@ export function JoinHousehold({context}){
 
     const onSubmit = () => {
         addUserToHousehold(newHousehold._id);
+        // setValidated(true);
     }
 
     return (
-        <Card>
-            <Card.Header>Join A Houshold!</Card.Header>
+        <Card >
+            <Card.Header>Join A Household</Card.Header>
             <Card.Body>
             <Form>
             <Form.Group>
-                <Form.Label>Enter House ID Found In Invite email</Form.Label>
-                <hr></hr>
-                <Form.Control as="input" size="lg" onChange={(e) => handleChange(e.target)} name="_id" custom>
-                   
-              </Form.Control>
+                <Form.Label>Enter Household ID From Email Invite</Form.Label>
+                <Form.Control 
+                    type="text" size="lg" name="_id" custom 
+                    onChange={(e) => handleChange(e.target)}
+                     />
+              
             </Form.Group>
-            <Button variant="primary" onClick={onSubmit}>
+            <Button variant="join" disabled={!isValid} onClick={onSubmit}>
                 Join Household
             </Button>
             </Form>
@@ -39,8 +45,4 @@ export function JoinHousehold({context}){
         </Card>
     )
 }
-
-
-
-
 
