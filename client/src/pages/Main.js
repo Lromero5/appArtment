@@ -9,7 +9,7 @@ function Main(props){
         <div>
         <Hero backgroundImage="https://www.minuteschool.com/wp-content/uploads/2019/09/Screen-Shot-2019-09-09-at-12.06.37-PM.png">
           <h1>AppArtment</h1>
-          <h2>A place for Roomates</h2>
+          <h2>A place for Roommates</h2>
           <a href="/login" class="button instagram"><span class="gradient"></span>Login</a>
           <br></br>
           <a href="/signup" class="button instagram"><span class="gradient"></span>Sign Up</a>
