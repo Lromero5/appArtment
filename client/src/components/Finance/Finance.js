@@ -5,17 +5,17 @@ import {IncomeExpenses} from "../Finance/incomeExpenses"
 import {TransactionList} from "../Finance/transactionList"
 import {AddTransaction} from "../Finance/addTransaction"
 import Card from "react-bootstrap/Card"
-import CardDeck from "react-bootstrap/CardDeck"
+
 
 import './Finance.css';
 
 function Finance({context}) {
   return  (
         <>
-        <CardDeck>
+   
         <Card>
-          <Card.Body>
           <Card.Header>Household Expenses</Card.Header>
+          <Card.Body>
         <Balance context={context}/>  
         <IncomeExpenses context={context}/>
         <TransactionList context={context}
@@ -24,7 +24,7 @@ function Finance({context}) {
           </Card>
 
         <AddTransaction context={context} />
-        </CardDeck> 
+   
         
         
         </>

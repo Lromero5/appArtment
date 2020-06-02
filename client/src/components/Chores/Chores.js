@@ -4,7 +4,7 @@ import TodoForm from "./TodoForm";
 import TodoList from "./TodoList";
 import Typography from "@material-ui/core/Typography";
 import { useParams } from "react-router-dom";
-
+import Card from 'react-bootstrap/Card'
 
 function Chores(props) {
   const [chores, setChores] = useState([]);
@@ -58,17 +58,18 @@ function Chores(props) {
   }
 
   return (
-    <div className="App">
-      <Typography style={{ padding: 16 }} variant="h1">
-        Chores
-      </Typography>
+    <Card>
+      <Card.Header>Add Chores</Card.Header>
+      <Card.Body>
       <TodoForm addChore={addChore} />
       <TodoList
         chores={chores}
         toggleComplete={toggleComplete}
         removeChore={removeChore}
       />
-    </div>
+      </Card.Body>
+    
+    </Card>
   );
 }
 
