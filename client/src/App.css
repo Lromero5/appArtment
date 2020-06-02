@@ -70,6 +70,9 @@ input[type='password']{
   background: rgb(233, 133, 133);
 }
 
+.card-columns .card{
+  overflow: scroll
+}
 
 @keyframes App-logo-spin {
   from {
